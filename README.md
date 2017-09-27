@@ -9,35 +9,28 @@ related tasks.
 
 The test suite currently contains:
 
+- A test to stress the [Babylon](https://github.com/babel/babylon)
+  syntax analysis library on different common inputs, i.e. on
+  the [jQuery](https://jquery.com) source code. Babylon is the
+  JavaScript parser used in [Babel](https://github.com/babel/babel)
+  and is built on top of [Acorn](https://github.com/ternjs/acorn).
+  It's representative for a whole class of popular parsing worklads.
 - A test to stress the [Chai Assertion Library](http://chaijs.com),
   which is commonly used to write unit and integration tests.
-- A test to stress the [Espree](https://github.com/eslint/espree)
-  syntax analysis library on different common inputs, i.e. on
-  the [jQuery](https://jquery.com) source code. Espree is a fork
-  of [Esprima](http://esprima.org), and nowadays built on top of
-  [Acorn](https://github.com/ternjs/acorn). It's representative
-  for a whole class of popular parsing worklads.
+- A test to stress the [source-map](https://github.com/mozilla/source-map)
+  tool on both parsing and serializing source maps.
 
 ## Building
 
-The benchmark comes either as a complete runner in `dist/run.js` or
-as individual runners, i.e. `dist/chai.js`, etc. To generate these
-runners, execute the following command in the toplevel folder:
-
 ```
-$ make
+$ npm install
 ```
 
-Currently this only works with GNU Make, and probably only on Linux
-and macOS. Once you have generated the runners, you can run them
-using either `node` or `d8` (the V8 shell), i.e.
+## Running
 
 ```
-$ ~/Projects/v8/out/Release/d8 dist/run.js
-Chai: 24096
-Espree: 21685
------
-Score (version 1): 22859
+$ node src/main
+babylon x 33.47 ops/sec ±11.03% (60 runs sampled)
+chai x 163 ops/sec ±1.95% (80 runs sampled)
+source-map x 15.57 ops/sec ±4.00% (42 runs sampled)
 ```
-
-In the future we also plan to add a web frontend.

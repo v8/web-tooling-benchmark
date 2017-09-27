@@ -18,13 +18,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-;(function() {
-  const babylon = BabylonLoadLibrary();
+const babylon = require('babylon');
+const fs = require('fs');
 
-  const benchmarks = [];
-  for (const [name, {payload, options}] of babylonPayloads) {
-    benchmarks.push(new Benchmark(`Parse ${name}`, false, false, 0,
-    	  function() { return babylon.parse(payload, options); }));
+const payloads = [
+  { name: 'preact-8.2.5.js',
+    options: {sourceType: 'script'}},
+  { name: 'lodash.core-4.17.4.js',
+    options: {sourceType: 'script'}},
+  { name: 'todomvc/react/app.jsx',
+    options: {sourceType: 'script', plugins: ['jsx']}},
+  { name: 'todomvc/react/footer.jsx',
+    options: {sourceType: 'script', plugins: ['jsx']}},
+  { name: 'todomvc/react/todoItem.jsx',
+    options: {sourceType: 'script', plugins: ['jsx']}},
+  { name: 'underscore-1.8.3.js',
+    options: {sourceType: 'script'}}
+].map(({name, options}) => ({
+  payload: fs.readFileSync(`test/3rdparty/${name}`, 'utf8'),
+  options
+}));
+
+module.exports = {
+  name: 'babylon',
+  fn() {
+    return payloads.map(
+        ({payload, options}) => {
+          try {babylon.parse(payload, options)} catch (e) {
+            console.log('meh', options);
+            console.log(e);}
+        });
   }
-  return new BenchmarkSuite('Babylon', 3808000, benchmarks);
-})();
+};

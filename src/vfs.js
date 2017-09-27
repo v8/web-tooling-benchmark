@@ -18,29 +18,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-;(function() {
-  const sourceMap = SourceMapLoadLibrary();
+const path = require('path');
+const virtualfs = require('virtualfs');
 
-  const benchmarks = [];
-  for (const [name, payload] of sourceMapPayloads) {
-    (function() {
-      let smg;
-      benchmarks.push(new Benchmark(`Seralize ${name}`, false, false, 0,
-            function() {
-              return smg.toString();
-            },
-            function() {
-              const smc = new sourceMap.SourceMapConsumer(payload);
-              smg = sourceMap.SourceMapGenerator.fromSourceMap(smc);
-            },
-            function() {
-              smg = undefined;
-            }));
-    })();
-    benchmarks.push(new Benchmark(`Parse ${name}`, false, false, 0,
-            function() {
-              return new sourceMap.SourceMapConsumer(payload);
-            }));
-  }
-  return new BenchmarkSuite('SourceMap', 68000, benchmarks);
-})();
+// Setup the virtual file system.
+const fs = new virtualfs.VirtualFS;
+[
+    'test/3rdparty/lodash.core-4.17.4.js',
+    'test/3rdparty/lodash.min-4.17.4.js.map',
+    'test/3rdparty/preact-8.2.5.js',
+    'test/3rdparty/preact-8.2.5.js.map',
+    'test/3rdparty/source-map.min-0.5.7.js.map',
+    'test/3rdparty/todomvc/react/app.jsx',
+    'test/3rdparty/todomvc/react/footer.jsx',
+    'test/3rdparty/todomvc/react/todoItem.jsx',
+    'test/3rdparty/underscore-1.8.3.js',
+    'test/3rdparty/underscore.min-1.8.3.js.map'
+].forEach(fileName => {
+  fs.mkdirpSync(path.dirname(fileName));
+  fs.writeFileSync(fileName, require(`raw-loader!../${fileName}`));
+});
+
+module.exports = fs;

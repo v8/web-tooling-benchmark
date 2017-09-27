@@ -18,25 +18,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-const espree = EspreeLoadLibrary();
+const Benchmark = require('benchmark');
 
-function EspreeSetup() {
-}
+const suite = new Benchmark.Suite;
+ 
+suite.add(require('../test/babylon-benchmark'));
+suite.add(require('../test/chai-benchmark'));
+suite.add(require('../test/source-map-benchmark'));
 
-function EspreeTearDown() {
-}
-
-function EspreeRun(name) {
-  const payload = espreePayloads.get(name);
-  espree.parse(payload);
-}
-
-(function() {
-  const benchmarks = [];
-  for (const name of espreePayloads.keys()) {
-    benchmarks.push(
-        new Benchmark(`Espree ${name}`, false, false,
-          0, EspreeRun.bind(undefined, name), EspreeSetup, EspreeTearDown));
-  }
-  return new BenchmarkSuite('Espree', 1700000, benchmarks);
-})();
+suite.on('cycle', function(event) {
+  console.log(String(event.target));
+});
+suite.run();

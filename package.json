@@ -1,0 +1,28 @@
+{
+  "name": "web-tooling-benchmark",
+  "description": "JavaScript Benchmark for common Web Developer workloads",
+  "version": "0.0.1",
+  "repository": "https://github.com/bmeurer/web-tooling-benchmark",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": {
+    "name": "Benedikt Meurer",
+    "email": "bmeurer@chromium.org",
+    "url": "http://benediktmeurer.de"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "babylon": "6.18.0",
+    "benchmark": "^2.1.4",
+    "chai": "4.1.2",
+    "microtime": "^2.1.6",
+    "source-map": "0.5.7",
+    "virtualfs": "^1.0.0"
+  },
+  "devDependencies": {
+    "raw-loader": "^0.5.1",
+    "webpack": "^3.6.0"
+  }
+}
