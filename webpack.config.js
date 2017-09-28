@@ -27,14 +27,6 @@ module.exports = {
     filename: 'run.js',
     path: path.resolve(__dirname, 'dist')
   },
-  module: {
-    rules: [
-      {
-        test: /resources/,
-        use: "raw-loader"
-      }
-    ]
-  },
   bail: true,
   resolve: {
     alias: {

@@ -18,25 +18,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-const path = require('path');
 const virtualfs = require('virtualfs');
 
 // Setup the virtual file system.
 const fs = new virtualfs.VirtualFS;
-[
-    'resources/lodash.core-4.17.4.js',
-    'resources/lodash.min-4.17.4.js.map',
-    'resources/preact-8.2.5.js',
-    'resources/preact-8.2.5.js.map',
-    'resources/source-map.min-0.5.7.js.map',
-    'resources/todomvc/react/app.jsx',
-    'resources/todomvc/react/footer.jsx',
-    'resources/todomvc/react/todoItem.jsx',
-    'resources/underscore-1.8.3.js',
-    'resources/underscore.min-1.8.3.js.map'
-].forEach(fileName => {
-  fs.mkdirpSync(path.dirname(fileName));
-  fs.writeFileSync(fileName, require(`raw-loader!../${fileName}`));
-});
+fs.mkdirpSync('resources/todomvc/react');
+fs.writeFileSync('resources/lodash.core-4.17.4.js', require('raw-loader!../resources/lodash.core-4.17.4.js'));
+fs.writeFileSync('resources/lodash.min-4.17.4.js.map', require('raw-loader!../resources/lodash.min-4.17.4.js.map'));
+fs.writeFileSync('resources/preact-8.2.5.js', require('raw-loader!../resources/preact-8.2.5.js'));
+fs.writeFileSync('resources/preact-8.2.5.js.map', require('raw-loader!../resources/preact-8.2.5.js.map'));
+fs.writeFileSync('resources/source-map.min-0.5.7.js.map', require('raw-loader!../resources/source-map.min-0.5.7.js.map'));
+fs.writeFileSync('resources/todomvc/react/app.jsx', require('raw-loader!../resources/todomvc/react/app.jsx'));
+fs.writeFileSync('resources/todomvc/react/footer.jsx', require('raw-loader!../resources/todomvc/react/footer.jsx'));
+fs.writeFileSync('resources/todomvc/react/todoItem.jsx', require('raw-loader!../resources/todomvc/react/todoItem.jsx'));
+fs.writeFileSync('resources/underscore-1.8.3.js', require('raw-loader!../resources/underscore-1.8.3.js'));
+fs.writeFileSync('resources/underscore.min-1.8.3.js.map', require('raw-loader!../resources/underscore.min-1.8.3.js.map'));
 
 module.exports = fs;
