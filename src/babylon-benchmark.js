@@ -35,7 +35,7 @@ const payloads = [
   { name: 'underscore-1.8.3.js',
     options: {sourceType: 'script'}}
 ].map(({name, options}) => ({
-  payload: fs.readFileSync(`test/3rdparty/${name}`, 'utf8'),
+  payload: fs.readFileSync(`resources/${name}`, 'utf8'),
   options
 }));
 

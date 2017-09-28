@@ -24,16 +24,16 @@ const virtualfs = require('virtualfs');
 // Setup the virtual file system.
 const fs = new virtualfs.VirtualFS;
 [
-    'test/3rdparty/lodash.core-4.17.4.js',
-    'test/3rdparty/lodash.min-4.17.4.js.map',
-    'test/3rdparty/preact-8.2.5.js',
-    'test/3rdparty/preact-8.2.5.js.map',
-    'test/3rdparty/source-map.min-0.5.7.js.map',
-    'test/3rdparty/todomvc/react/app.jsx',
-    'test/3rdparty/todomvc/react/footer.jsx',
-    'test/3rdparty/todomvc/react/todoItem.jsx',
-    'test/3rdparty/underscore-1.8.3.js',
-    'test/3rdparty/underscore.min-1.8.3.js.map'
+    'resources/lodash.core-4.17.4.js',
+    'resources/lodash.min-4.17.4.js.map',
+    'resources/preact-8.2.5.js',
+    'resources/preact-8.2.5.js.map',
+    'resources/source-map.min-0.5.7.js.map',
+    'resources/todomvc/react/app.jsx',
+    'resources/todomvc/react/footer.jsx',
+    'resources/todomvc/react/todoItem.jsx',
+    'resources/underscore-1.8.3.js',
+    'resources/underscore.min-1.8.3.js.map'
 ].forEach(fileName => {
   fs.mkdirpSync(path.dirname(fileName));
   fs.writeFileSync(fileName, require(`raw-loader!../${fileName}`));
