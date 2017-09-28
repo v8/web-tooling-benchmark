@@ -32,15 +32,11 @@ module.exports = {
   name: 'source-map',
   fn() {
     payloads.forEach(payload => {
-      try {
       // Parse the source map first...
       const smc = new sourceMap.SourceMapConsumer(payload);
       // ...then serialize the parsed source map to a String.
       const smg = sourceMap.SourceMapGenerator.fromSourceMap(smc);
       return smg.toString();
-      } catch (e) {
-        console.log(e);
-      }
     });
   }
 };

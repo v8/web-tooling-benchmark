@@ -22,8 +22,8 @@ const Benchmark = require('benchmark');
 
 const suite = new Benchmark.Suite;
  
-//suite.add(require('./babylon-benchmark'));
-//suite.add(require('./chai-benchmark'));
+suite.add(require('./babylon-benchmark'));
+suite.add(require('./chai-benchmark'));
 suite.add(require('./source-map-benchmark'));
 
 suite.on('cycle', function(event) {
