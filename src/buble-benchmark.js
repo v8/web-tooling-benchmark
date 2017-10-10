@@ -18,17 +18,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-const Benchmark = require('benchmark');
+const buble = require('buble');
+const fs = require('fs');
 
-const suite = new Benchmark.Suite;
+const payloads = [
+  { name: 'vue.runtime.esm-nobuble-2.4.4.js',
+    options: {} }
+].map(({name, options}) => ({
+	payload: fs.readFileSync(`resources/${name}`, 'utf8'),
+	options: { transforms: { modules: false }} }));
 
-suite.add(require('./babel-benchmark'));
-suite.add(require('./babylon-benchmark'));
-suite.add(require('./buble-benchmark'));
-suite.add(require('./chai-benchmark'));
-suite.add(require('./source-map-benchmark'));
-
-suite.on('cycle', function(event) {
-  console.log(String(event.target));
-});
-suite.run();
+module.exports = {
+  name: 'buble',
+  fn() {
+    return payloads.map(({payload, options}) =>
+      buble.transform(payload, options));
+  }
+};

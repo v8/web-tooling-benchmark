@@ -17,6 +17,7 @@
     "babel-standalone": "7.0.0-beta.2",
     "babylon": "6.18.0",
     "benchmark": "^2.1.4",
+    "buble": "0.16.0",
     "chai": "4.1.2",
     "microtime": "^2.1.6",
     "source-map": "0.5.7",
