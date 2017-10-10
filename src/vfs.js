@@ -33,5 +33,6 @@ fs.writeFileSync('resources/todomvc/react/footer.jsx', require('raw-loader!../re
 fs.writeFileSync('resources/todomvc/react/todoItem.jsx', require('raw-loader!../resources/todomvc/react/todoItem.jsx'));
 fs.writeFileSync('resources/underscore-1.8.3.js', require('raw-loader!../resources/underscore-1.8.3.js'));
 fs.writeFileSync('resources/underscore.min-1.8.3.js.map', require('raw-loader!../resources/underscore.min-1.8.3.js.map'));
+fs.writeFileSync('resources/vue.runtime.esm-nobuble-2.4.4.js', require('raw-loader!../resources/vue.runtime.esm-nobuble-2.4.4.js'));
 
 module.exports = fs;

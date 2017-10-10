@@ -33,7 +33,9 @@ const payloads = [
   { name: 'todomvc/react/todoItem.jsx',
     options: {sourceType: 'script', plugins: ['jsx']}},
   { name: 'underscore-1.8.3.js',
-    options: {sourceType: 'script'}}
+    options: {sourceType: 'script'}},
+  { name: 'vue.runtime.esm-nobuble-2.4.4.js',
+    options: {sourceType: 'module'}},
 ].map(({name, options}) => ({
   payload: fs.readFileSync(`resources/${name}`, 'utf8'),
   options
