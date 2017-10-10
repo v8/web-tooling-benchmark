@@ -19,20 +19,39 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const Benchmark = require('benchmark');
+const fs = require('fs');
+const ts = require('typescript');
 
-const suite = new Benchmark.Suite;
+const payloads = [
+  {
+    // Compile typescript-angular.ts to ES3 (default)
+    name: 'todomvc/typescript-angular.ts',
+    transpileOptions: {
+      compilerOptions: {
+        module: ts.ModuleKind.CommonJS,
+        target: ts.ScriptTarget.ES3
+      }
+    }
+  },
+  {
+    // Compile typescript-angular.ts to ESNext (latest)
+    name: 'todomvc/typescript-angular.ts',
+    transpileOptions: {
+      compilerOptions: {
+        module: ts.ModuleKind.CommonJS,
+        target: ts.ScriptTarget.ESNext
+      }
+    }
+  },
+].map(({ name, transpileOptions }) => ({
+  input: fs.readFileSync(`resources/${name}`, 'utf8'),
+  transpileOptions
+}));
 
-suite.add(require('./babel-benchmark'));
-suite.add(require('./babylon-benchmark'));
-suite.add(require('./buble-benchmark'));
-suite.add(require('./chai-benchmark'));
-suite.add(require('./source-map-benchmark'));
-suite.add(require('./typescript-benchmark'));
-suite.add(require('./uglify-js-benchmark'));
-suite.add(require('./uglify-es-benchmark'));
-
-suite.on('cycle', function(event) {
-  console.log(String(event.target));
-});
-suite.run();
+module.exports = {
+  name: 'typescript',
+  fn() {
+    return payloads.map(({ input, transpileOptions }) =>
+      ts.transpileModule(input, transpileOptions));
+  }
+};

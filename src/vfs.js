@@ -33,6 +33,7 @@ fs.writeFileSync('resources/speedometer-es2015-test-2.0.js', require('raw-loader
 fs.writeFileSync('resources/todomvc/react/app.jsx', require('raw-loader!../resources/todomvc/react/app.jsx'));
 fs.writeFileSync('resources/todomvc/react/footer.jsx', require('raw-loader!../resources/todomvc/react/footer.jsx'));
 fs.writeFileSync('resources/todomvc/react/todoItem.jsx', require('raw-loader!../resources/todomvc/react/todoItem.jsx'));
+fs.writeFileSync('resources/todomvc/typescript-angular.ts', require('raw-loader!../resources/todomvc/typescript-angular.ts'));
 fs.writeFileSync('resources/underscore-1.8.3.js', require('raw-loader!../resources/underscore-1.8.3.js'));
 fs.writeFileSync('resources/underscore.min-1.8.3.js.map', require('raw-loader!../resources/underscore.min-1.8.3.js.map'));
 fs.writeFileSync('resources/vue.runtime.esm-nobuble-2.4.4.js', require('raw-loader!../resources/vue.runtime.esm-nobuble-2.4.4.js'));

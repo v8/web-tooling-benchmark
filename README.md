@@ -28,6 +28,9 @@ The test suite currently contains:
   which is commonly used to write unit and integration tests.
 - A test to stress the [source-map](https://github.com/mozilla/source-map)
   tool on both parsing and serializing source maps.
+- A test to stress the [TypeScript](https://github.com/Microsoft/TypeScript)
+  compiler on the [`typescript-angular`](https://github.com/tastejs/todomvc/tree/master/examples/typescript-angular)
+  example from [todomvc](https://github.com/tastejs/todomvc).
 - A test to stress the [UglifyJS3](https://github.com/mishoo/UglifyJS2)
   minifier, running on the (concatenated) JavaScript source for
   the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer)

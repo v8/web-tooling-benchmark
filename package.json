@@ -24,6 +24,7 @@
     "chai": "4.1.2",
     "microtime": "^2.1.6",
     "source-map": "0.5.7",
+    "typescript": "2.5.3",
     "virtualfs": "^1.0.0"
   },
   "devDependencies": {
