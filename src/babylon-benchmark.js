@@ -43,10 +43,6 @@ module.exports = {
   name: 'babylon',
   fn() {
     return payloads.map(
-        ({payload, options}) => {
-          try {babylon.parse(payload, options)} catch (e) {
-            console.log('meh', options);
-            console.log(e);}
-        });
+      ({ payload, options }) => babylon.parse(payload, options));
   }
 };
