@@ -9,6 +9,10 @@ related tasks.
 
 The test suite currently contains:
 
+- A test to stress the [Babe](https://github.com/babel/babel)
+  transformation logic using the `es2015` preset on a 196K
+  ES2015 module containing the untranspiled [Vue](https://github.com/vuejs/vue)
+  source code.
 - A test to stress the [Babylon](https://github.com/babel/babylon)
   syntax analysis library on different common inputs, i.e. on
   the [jQuery](https://jquery.com) source code. Babylon is the

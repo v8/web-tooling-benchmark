@@ -18,16 +18,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-const Benchmark = require('benchmark');
+const Babel = require('babel-standalone');
+const babylon = require('babylon');
+const fs = require('fs');
 
-const suite = new Benchmark.Suite;
-
-suite.add(require('./babel-benchmark'));
-suite.add(require('./babylon-benchmark'));
-suite.add(require('./chai-benchmark'));
-suite.add(require('./source-map-benchmark'));
-
-suite.on('cycle', function(event) {
-  console.log(String(event.target));
+const payloads = [
+  { name: 'vue.runtime.esm-nobuble-2.4.4.js',
+    options: {presets: ['es2015'], sourceType: 'module'}}
+].map(({name, options}) => {
+  const code = fs.readFileSync(`resources/${name}`, 'utf8');
+  const ast = babylon.parse(code, options);
+  return {ast, code, options};
 });
-suite.run();
+
+module.exports = {
+  name: 'babel',
+  fn() {
+    return payloads.map(({ast, code, options}) =>
+      Babel.transformFromAst(ast, code, options));
+  }
+};
