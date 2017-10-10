@@ -36,8 +36,12 @@ module.exports = {
   },
   plugins: [
       new webpack.BannerPlugin({
-        banner: '// Required for JavaScript engine shells.\nvar global = this;',
-        raw: true
+	      banner: "// Required for JavaScript engine shells.\n" +
+		      "var global = this;\n" +
+		      "if (typeof console === 'undefined') {\n" +
+                      "  console = {log: print};\n" +
+                      "}",
+	      raw: true
       })
   ]
 }
