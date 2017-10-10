@@ -25,6 +25,7 @@ const suite = new Benchmark.Suite;
 
 suite.add(require('./babel-benchmark'));
 suite.add(require('./babylon-benchmark'));
+suite.add(require('./buble-benchmark'));
 suite.add(require('./chai-benchmark'));
 suite.add(require('./source-map-benchmark'));
 

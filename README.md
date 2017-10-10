@@ -19,6 +19,11 @@ The test suite currently contains:
   JavaScript parser used in [Babel](https://github.com/babel/babel)
   and is built on top of [Acorn](https://github.com/ternjs/acorn).
   It's representative for a whole class of popular parsing worklads.
+- A test to stress the [Buble](https://github.com/Rich-Harris/buble)
+  ES2015 compiler, both the parser and the actual transformation
+  logic, on the same 196K ES2015 module containing the untranspiled
+  [Vue](https://github.com/vuejs/vue) source code that is also used
+  to stress by the `babel` and `babylon` tests.
 - A test to stress the [Chai Assertion Library](http://chaijs.com),
   which is commonly used to write unit and integration tests.
 - A test to stress the [source-map](https://github.com/mozilla/source-map)
