@@ -347,6 +347,56 @@ describe('assert', () => {
 });
 
 describe('expect', () => {
+  describe('proxify', () => {
+    it('throws when invalid property follows expect', function () {
+      expect(() => {
+        expect(42).pizza;
+      }).to.throw(Error, "Invalid Chai property: pizza");
+    });
+
+    it('throws when invalid property follows language chain', function () {
+      expect(() => {
+        expect(42).to.pizza;
+      }).to.throw(Error, "Invalid Chai property: pizza");
+    });
+
+    it('throws when invalid property follows property assertion', function () {
+      expect(() => {
+        expect(42).ok.pizza;
+      }).to.throw(Error, "Invalid Chai property: pizza");
+    });
+
+    it('throws when invalid property follows uncalled method assertion', function () {
+      expect(() => {
+        expect(42).equal.pizza;
+      }).to.throw(Error, "Invalid Chai property: equal.pizza. See docs for proper usage of \"equal\".");
+    });
+
+    it('throws when invalid property follows called method assertion', function () {
+      expect(() => {
+        expect(42).equal(42).pizza;
+      }).to.throw(Error, "Invalid Chai property: pizza");
+    });
+
+    it('throws when invalid property follows uncalled chainable method assertion', function () {
+      expect(() => {
+        expect(42).a.pizza;
+      }).to.throw(Error, "Invalid Chai property: pizza");
+    });
+
+    it('throws when invalid property follows called chainable method assertion', function () {
+      expect(() => {
+        expect(42).a('number').pizza;
+      }).to.throw(Error, "Invalid Chai property: pizza");
+    });
+
+    it('doesn\'t throw if invalid property is excluded via config', function () {
+      expect(() => {
+        expect(42).then;
+      }).to.not.throw();
+    });
+  });
+
   it('no-op chains', () => {
     [
         'to', 'be', 'been' , 'is', 'and', 'has', 'have',
@@ -461,6 +511,249 @@ describe('expect', () => {
     }).to.throw(AssertionError, "expected [] to be arguments but got Array");
   });
 
+  it('instanceof', () => {
+    function Foo(){}
+    expect(new Foo()).to.be.an.instanceof(Foo);
+
+    expect(() => {
+      expect(new Foo()).to.an.instanceof(1, 'blah');
+    }).to.throw(AssertionError, "blah: The instanceof assertion needs a constructor but number was given.");
+
+    expect(() => {
+      expect(new Foo(), 'blah').to.an.instanceof(1);
+    }).to.throw(AssertionError, "blah: The instanceof assertion needs a constructor but number was given.");
+
+    expect(() => {
+      expect(new Foo()).to.an.instanceof('batman');
+    }).to.throw(AssertionError, "The instanceof assertion needs a constructor but string was given.");
+
+    expect(() => {
+      expect(new Foo()).to.an.instanceof({});
+    }).to.throw(AssertionError, "The instanceof assertion needs a constructor but Object was given.");
+
+    expect(() => {
+      expect(new Foo()).to.an.instanceof(true);
+    }).to.throw(AssertionError, "The instanceof assertion needs a constructor but boolean was given.");
+
+    expect(() => {
+      expect(new Foo()).to.an.instanceof(null);
+    }).to.throw(AssertionError, "The instanceof assertion needs a constructor but null was given.");
+
+    expect(() => {
+      expect(new Foo()).to.an.instanceof(undefined);
+    }).to.throw(AssertionError, "The instanceof assertion needs a constructor but undefined was given.");
+
+    expect(() => {
+      function Thing() { };
+      var t = new Thing();
+      Thing.prototype = 1337;
+      expect(t).to.an.instanceof(Thing);
+    }).to.throw(AssertionError, "The instanceof assertion needs a constructor but function was given.");
+
+    expect(() => {
+      expect(new Foo()).to.an.instanceof(Symbol());
+    }).to.throw(AssertionError, "The instanceof assertion needs a constructor but symbol was given.");
+
+    expect(() => {
+      var FakeConstructor = {};
+      var fakeInstanceB = 4;
+      FakeConstructor[Symbol.hasInstance] = function (val) {
+        return val === 3;
+      };
+      expect(fakeInstanceB).to.be.an.instanceof(FakeConstructor);
+    }).to.throw(AssertionError, "expected 4 to be an instance of an unnamed constructor")
+
+    expect(() => {
+      var FakeConstructor = {};
+      var fakeInstanceB = 4;
+      FakeConstructor[Symbol.hasInstance] = function (val) {
+        return val === 4;
+      };
+      expect(fakeInstanceB).to.not.be.an.instanceof(FakeConstructor);
+    }).to.throw(AssertionError, "expected 4 to not be an instance of an unnamed constructor")
+
+    expect(() => {
+      expect(3).to.an.instanceof(Foo, 'blah');
+    }).to.throw(AssertionError, "blah: expected 3 to be an instance of Foo");
+
+    expect(() => {
+      expect(3, 'blah').to.an.instanceof(Foo);
+    }).to.throw(AssertionError, "blah: expected 3 to be an instance of Foo");
+  });
+
+  it('deep.equal(val)', () => {
+    expect({ foo: 'bar' }).to.deep.equal({ foo: 'bar' });
+    expect({ foo: 'bar' }).not.to.deep.equal({ foo: 'baz' });
+  });
+
+  it('deep.equal(/regexp/)', () => {
+    expect(/a/).to.deep.equal(/a/);
+    expect(/a/).not.to.deep.equal(/b/);
+    expect(/a/).not.to.deep.equal({});
+    expect(/a/g).to.deep.equal(/a/g);
+    expect(/a/g).not.to.deep.equal(/b/g);
+    expect(/a/i).to.deep.equal(/a/i);
+    expect(/a/i).not.to.deep.equal(/b/i);
+    expect(/a/m).to.deep.equal(/a/m);
+    expect(/a/m).not.to.deep.equal(/b/m);
+  });
+
+  it('deep.equal(Date)', () => {
+    var a = new Date(1, 2, 3)
+      , b = new Date(4, 5, 6);
+    expect(a).to.deep.equal(a);
+    expect(a).not.to.deep.equal(b);
+    expect(a).not.to.deep.equal({});
+  });
+
+  it('empty', () => {
+    function FakeArgs() {};
+    FakeArgs.prototype.length = 0;
+
+    expect('').to.be.empty;
+    expect('foo').not.to.be.empty;
+    expect([]).to.be.empty;
+    expect(['foo']).not.to.be.empty;
+    expect(new FakeArgs).to.be.empty;
+    expect({arguments: 0}).not.to.be.empty;
+    expect({}).to.be.empty;
+    expect({foo: 'bar'}).not.to.be.empty;
+
+    expect(() => {
+      expect(new WeakMap, 'blah').not.to.be.empty;
+    }).to.throw(AssertionError, "blah: .empty was passed a weak collection");
+
+    expect(() => {
+      expect(new WeakSet, 'blah').not.to.be.empty;
+    }).to.throw(AssertionError, "blah: .empty was passed a weak collection");
+
+    expect(new Map).to.be.empty;
+
+    // Not using Map constructor args because not supported in IE 11.
+    var map = new Map;
+    map.set('a', 1);
+    expect(map).not.to.be.empty;
+
+    expect(() => {
+      expect(new Map).not.to.be.empty;
+    }).to.throw(AssertionError, "expected {} not to be empty");
+
+    map = new Map;
+    map.key = 'val';
+    expect(map).to.be.empty;
+
+    expect(() => {
+      expect(map).not.to.be.empty;
+    }).to.throw(AssertionError, "expected { key: 'val' } not to be empty");
+
+    expect(new Set).to.be.empty;
+
+    // Not using Set constructor args because not supported in IE 11.
+    var set = new Set;
+    set.add(1);
+    expect(set).not.to.be.empty;
+
+    expect(() => {
+      expect(new Set).not.to.be.empty;
+    }).to.throw(AssertionError, "expected {} not to be empty");
+
+    set = new Set;
+    set.key = 'val';
+    expect(set).to.be.empty;
+
+    expect(() => {
+      expect(set).not.to.be.empty;
+    }).to.throw(AssertionError, "expected { key: 'val' } not to be empty");
+
+    expect(() => {
+      expect('', 'blah').not.to.be.empty;
+    }).to.throw(AssertionError, "blah: expected \'\' not to be empty");
+
+    expect(() => {
+      expect('foo').to.be.empty;
+    }).to.throw(AssertionError, "expected \'foo\' to be empty");
+
+    expect(() => {
+      expect([]).not.to.be.empty;
+    }).to.throw(AssertionError, "expected [] not to be empty");
+
+    expect(() => {
+      expect(['foo']).to.be.empty;
+    }).to.throw(AssertionError, "expected [ \'foo\' ] to be empty");
+
+    expect(() => {
+      expect(new FakeArgs).not.to.be.empty;
+    }).to.throw(AssertionError, "expected { length: 0 } not to be empty");
+
+    expect(() => {
+      expect({arguments: 0}).to.be.empty;
+    }).to.throw(AssertionError, "expected { arguments: 0 } to be empty");
+
+    expect(() => {
+      expect({}).not.to.be.empty;
+    }).to.throw(AssertionError, "expected {} not to be empty");
+
+    expect(() => {
+      expect({foo: 'bar'}).to.be.empty;
+    }).to.throw(AssertionError, "expected { foo: \'bar\' } to be empty");
+
+    expect(() => {
+      expect(null, 'blah').to.be.empty;
+    }).to.throw(AssertionError, "blah: .empty was passed non-string primitive null");
+
+    expect(() => {
+      expect(undefined).to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive undefined");
+
+    expect(() => {
+      expect().to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive undefined");
+
+    expect(() => {
+      expect(null).to.not.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive null");
+
+    expect(() => {
+      expect(undefined).to.not.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive undefined");
+
+    expect(() => {
+      expect().to.not.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive undefined");
+
+    expect(() => {
+      expect(0).to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive 0");
+
+    expect(() => {
+      expect(1).to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive 1");
+
+    expect(() => {
+      expect(true).to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive true");
+
+    expect(() => {
+      expect(false).to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive false");
+
+    expect(() => {
+      expect(Symbol()).to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive Symbol()");
+
+    expect(() => {
+      expect(Symbol.iterator).to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed non-string primitive Symbol(Symbol.iterator)");
+
+    expect(() => {
+      expect(function () { }, 'blah').to.be.empty;
+    }).to.throw(AssertionError, "blah: .empty was passed a function");
+
+    expect(() => {
+      expect(FakeArgs).to.be.empty;
+    }).to.throw(AssertionError, ".empty was passed a function FakeArgs");
+  });
+
   it('NaN', () => {
     expect(NaN).to.be.NaN;
     expect(undefined).not.to.be.NaN;
@@ -497,6 +790,82 @@ describe('expect', () => {
     expect(() => {
       expect([]).to.be.NaN;
     }).to.throw(AssertionError, "expected [] to be NaN");
+  });
+
+  it('finite', function() {
+    expect(4).to.be.finite;
+    expect(-10).to.be.finite;
+
+    expect(() => {
+      expect(NaN, 'blah').to.be.finite;
+    }).to.throw(AssertionError, "blah: expected NaN to be a finite number");
+
+    expect(() => {
+      expect(Infinity).to.be.finite;
+    }).to.throw(AssertionError, "expected Infinity to be a finite number");
+
+    expect(() => {
+      expect('foo').to.be.finite;
+    }).to.throw(AssertionError, "expected \'foo\' to be a finite number");
+
+    expect(() => {
+      expect([]).to.be.finite;
+    }).to.throw(AssertionError, "expected [] to be a finite number");
+
+    expect(() => {
+      expect({}).to.be.finite;
+    }).to.throw(AssertionError, "expected {} to be a finite number");
+  });
+
+  it('property(name)', function () {
+    expect('test').to.have.property('length');
+    expect({ a: 1 }).to.have.property('toString');
+    expect(4).to.not.have.property('length');
+
+    expect({ 'foo.bar': 'baz' })
+      .to.have.property('foo.bar');
+    expect({ foo: { bar: 'baz' } })
+      .to.not.have.property('foo.bar');
+
+    // Properties with the value 'undefined' are still properties
+    var obj = { foo: undefined };
+    Object.defineProperty(obj, 'bar', {
+      get: function () { }
+    });
+    expect(obj).to.have.property('foo');
+    expect(obj).to.have.property('bar');
+
+    expect({ 'foo.bar[]': 'baz' })
+      .to.have.property('foo.bar[]');
+
+    expect(() => {
+      expect('asd').to.have.property('foo');
+    }).to.throw(AssertionError, "expected 'asd' to have property 'foo'");
+
+    expect(() => {
+      expect('asd', 'blah').to.have.property('foo');
+    }).to.throw(AssertionError, "blah: expected 'asd' to have property 'foo'");
+
+    expect(() => {
+      expect({ foo: { bar: 'baz' } })
+        .to.have.property('foo.bar');
+    }).to.throw(AssertionError, "expected { foo: { bar: 'baz' } } to have property 'foo.bar'");
+
+    expect(() => {
+      expect({ a: { b: 1 } }).to.have.own.nested.property("a.b");
+    }).to.throw(AssertionError, "The \"nested\" and \"own\" flags cannot be combined.");
+
+    expect(() => {
+      expect({ a: { b: 1 } }, 'blah').to.have.own.nested.property("a.b");
+    }).to.throw(AssertionError, "blah: The \"nested\" and \"own\" flags cannot be combined.");
+
+    expect(() => {
+      expect(null, 'blah').to.have.property("a");
+    }).to.throw(AssertionError, "blah: Target cannot be null or undefined.");
+
+    expect(() => {
+      expect(undefined, 'blah').to.have.property("a");
+    }).to.throw(AssertionError, "blah: Target cannot be null or undefined.");
   });
 
   it('change', () => {
