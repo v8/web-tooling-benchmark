@@ -19,13 +19,13 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const fs = require('fs');
-const ts = require('typescript');
+const fs = require("fs");
+const ts = require("typescript");
 
 const payloads = [
   {
     // Compile typescript-angular.ts to ES3 (default)
-    name: 'todomvc/typescript-angular.ts',
+    name: "todomvc/typescript-angular.ts",
     transpileOptions: {
       compilerOptions: {
         module: ts.ModuleKind.CommonJS,
@@ -35,23 +35,24 @@ const payloads = [
   },
   {
     // Compile typescript-angular.ts to ESNext (latest)
-    name: 'todomvc/typescript-angular.ts',
+    name: "todomvc/typescript-angular.ts",
     transpileOptions: {
       compilerOptions: {
         module: ts.ModuleKind.CommonJS,
         target: ts.ScriptTarget.ESNext
       }
     }
-  },
+  }
 ].map(({ name, transpileOptions }) => ({
-  input: fs.readFileSync(`resources/${name}`, 'utf8'),
+  input: fs.readFileSync(`resources/${name}`, "utf8"),
   transpileOptions
 }));
 
 module.exports = {
-  name: 'typescript',
+  name: "typescript",
   fn() {
     return payloads.map(({ input, transpileOptions }) =>
-      ts.transpileModule(input, transpileOptions));
+      ts.transpileModule(input, transpileOptions)
+    );
   }
 };

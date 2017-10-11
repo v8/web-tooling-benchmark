@@ -19,21 +19,24 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const UglifyJS = require('../build/uglify-es-bundled');
-const fs = require('fs');
+const UglifyJS = require("../build/uglify-es-bundled");
+const fs = require("fs");
 
 const payloads = [
-  { name: 'speedometer-es2015-test-2.0.js',
-    options: { compress: { passes: 1, sequences: false }}}
-].map(({name, options}) => ({
-  payload: fs.readFileSync(`resources/${name}`, 'utf8'),
+  {
+    name: "speedometer-es2015-test-2.0.js",
+    options: { compress: { passes: 1, sequences: false } }
+  }
+].map(({ name, options }) => ({
+  payload: fs.readFileSync(`resources/${name}`, "utf8"),
   options
 }));
 
 module.exports = {
-  name: 'uglify-es',
+  name: "uglify-es",
   fn() {
-    return payloads.map(
-      ({ payload, options }) => UglifyJS.minify(payload, options));
+    return payloads.map(({ payload, options }) =>
+      UglifyJS.minify(payload, options)
+    );
   }
 };

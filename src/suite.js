@@ -19,18 +19,18 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const Benchmark = require('benchmark');
+const Benchmark = require("benchmark");
 
-const suite = new Benchmark.Suite;
+const suite = new Benchmark.Suite();
 
-suite.add(require('./babel-benchmark'));
-suite.add(require('./babylon-benchmark'));
-suite.add(require('./buble-benchmark'));
-suite.add(require('./chai-benchmark'));
-suite.add(require('./prettier-benchmark'));
-suite.add(require('./source-map-benchmark'));
-suite.add(require('./typescript-benchmark'));
-suite.add(require('./uglify-js-benchmark'));
-suite.add(require('./uglify-es-benchmark'));
+suite.add(require("./babel-benchmark"));
+suite.add(require("./babylon-benchmark"));
+suite.add(require("./buble-benchmark"));
+suite.add(require("./chai-benchmark"));
+suite.add(require("./prettier-benchmark"));
+suite.add(require("./source-map-benchmark"));
+suite.add(require("./typescript-benchmark"));
+suite.add(require("./uglify-js-benchmark"));
+suite.add(require("./uglify-es-benchmark"));
 
 module.exports = suite;

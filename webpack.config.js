@@ -19,30 +19,31 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: './src/cli.js',
+  entry: "./src/cli.js",
   output: {
-    filename: 'run.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "run.js",
+    path: path.resolve(__dirname, "dist")
   },
   bail: true,
   resolve: {
     alias: {
-      'fs': require.resolve('./src/vfs'),
-      'module': require.resolve("./src/mocks/dummy")
+      fs: require.resolve("./src/vfs"),
+      module: require.resolve("./src/mocks/dummy")
     }
   },
   plugins: [
-      new webpack.BannerPlugin({
-        banner: "// Required for JavaScript engine shells.\n" +
-                "var global = this;\n" +
-                "if (typeof console === 'undefined') {\n" +
-                "  console = {log: print};\n" +
-                "}",
-        raw: true
-      })
+    new webpack.BannerPlugin({
+      banner:
+        "// Required for JavaScript engine shells.\n" +
+        "var global = this;\n" +
+        "if (typeof console === 'undefined') {\n" +
+        "  console = {log: print};\n" +
+        "}",
+      raw: true
+    })
   ]
-}
+};

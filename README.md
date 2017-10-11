@@ -1,5 +1,7 @@
 # Web Tooling Benchmark
 
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 This is work-in-progress benchmark suite that tries to measure the
 JavaScript related workloads required by Web Developers nowadays.
 It's the explicit goal not to measure I/O or other non-JavaScript

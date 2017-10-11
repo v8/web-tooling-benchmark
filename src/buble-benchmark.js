@@ -18,20 +18,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-const buble = require('buble');
-const fs = require('fs');
+const buble = require("buble");
+const fs = require("fs");
 
 const payloads = [
-  { name: 'vue.runtime.esm-nobuble-2.4.4.js',
-    options: {} }
-].map(({name, options}) => ({
-	payload: fs.readFileSync(`resources/${name}`, 'utf8'),
-	options: { transforms: { modules: false }} }));
+  {
+    name: "vue.runtime.esm-nobuble-2.4.4.js",
+    options: {}
+  }
+].map(({ name, options }) => ({
+  payload: fs.readFileSync(`resources/${name}`, "utf8"),
+  options: { transforms: { modules: false } }
+}));
 
 module.exports = {
-  name: 'buble',
+  name: "buble",
   fn() {
-    return payloads.map(({payload, options}) =>
-      buble.transform(payload, options));
+    return payloads.map(({ payload, options }) =>
+      buble.transform(payload, options)
+    );
   }
 };

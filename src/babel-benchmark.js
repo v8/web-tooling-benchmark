@@ -19,23 +19,26 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const Babel = require('babel-standalone');
-const babylon = require('babylon');
-const fs = require('fs');
+const Babel = require("babel-standalone");
+const babylon = require("babylon");
+const fs = require("fs");
 
 const payloads = [
-  { name: 'vue.runtime.esm-nobuble-2.4.4.js',
-    options: {presets: ['es2015'], sourceType: 'module'}}
-].map(({name, options}) => {
-  const code = fs.readFileSync(`resources/${name}`, 'utf8');
+  {
+    name: "vue.runtime.esm-nobuble-2.4.4.js",
+    options: { presets: ["es2015"], sourceType: "module" }
+  }
+].map(({ name, options }) => {
+  const code = fs.readFileSync(`resources/${name}`, "utf8");
   const ast = babylon.parse(code, options);
-  return {ast, code, options};
+  return { ast, code, options };
 });
 
 module.exports = {
-  name: 'babel',
+  name: "babel",
   fn() {
-    return payloads.map(({ast, code, options}) =>
-      Babel.transformFromAst(ast, code, options));
+    return payloads.map(({ ast, code, options }) =>
+      Babel.transformFromAst(ast, code, options)
+    );
   }
 };

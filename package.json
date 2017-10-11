@@ -8,7 +8,18 @@
     "build:uglify-es-bundled": "./node_modules/uglify-es/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > ./build/uglify-es-bundled.js",
     "build:uglify-js-bundled": "./node_modules/uglify-js/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > ./build/uglify-js-bundled.js",
     "build": "webpack",
-    "postinstall": "npm run build:uglify-es-bundled && npm run build:uglify-js-bundled && npm run build"
+    "postinstall": "npm run build:uglify-es-bundled && npm run build:uglify-js-bundled && npm run build",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "webpack.config.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "author": {
     "name": "Benedikt Meurer",
@@ -31,6 +42,8 @@
     "virtualfs": "^1.0.0"
   },
   "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.3",
     "node-libs-browser": "github:bmeurer/node-libs-browser#patch-1",
     "os-browserify": "^0.3.0",
     "raw-loader": "github:bmeurer/raw-loader#escape",

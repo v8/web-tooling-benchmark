@@ -19,21 +19,24 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const UglifyJS = require('../build/uglify-js-bundled');
-const fs = require('fs');
+const UglifyJS = require("../build/uglify-js-bundled");
+const fs = require("fs");
 
 const payloads = [
-  { name: 'lodash.core-4.17.4.js',
-    options: { compress: { passes: 1 }}}
-].map(({name, options}) => ({
-  payload: fs.readFileSync(`resources/${name}`, 'utf8'),
+  {
+    name: "lodash.core-4.17.4.js",
+    options: { compress: { passes: 1 } }
+  }
+].map(({ name, options }) => ({
+  payload: fs.readFileSync(`resources/${name}`, "utf8"),
   options
 }));
 
 module.exports = {
-  name: 'uglify-js',
+  name: "uglify-js",
   fn() {
-    return payloads.map(
-      ({ payload, options }) => UglifyJS.minify(payload, options));
+    return payloads.map(({ payload, options }) =>
+      UglifyJS.minify(payload, options)
+    );
   }
 };

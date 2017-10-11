@@ -19,33 +19,48 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const babylon = require('babylon');
-const fs = require('fs');
+const babylon = require("babylon");
+const fs = require("fs");
 
 const payloads = [
-  { name: 'preact-8.2.5.js',
-    options: {sourceType: 'script'}},
-  { name: 'lodash.core-4.17.4.js',
-    options: {sourceType: 'script'}},
-  { name: 'todomvc/react/app.jsx',
-    options: {sourceType: 'script', plugins: ['jsx']}},
-  { name: 'todomvc/react/footer.jsx',
-    options: {sourceType: 'script', plugins: ['jsx']}},
-  { name: 'todomvc/react/todoItem.jsx',
-    options: {sourceType: 'script', plugins: ['jsx']}},
-  { name: 'underscore-1.8.3.js',
-    options: {sourceType: 'script'}},
-  { name: 'vue.runtime.esm-nobuble-2.4.4.js',
-    options: {sourceType: 'module'}},
-].map(({name, options}) => ({
-  payload: fs.readFileSync(`resources/${name}`, 'utf8'),
+  {
+    name: "preact-8.2.5.js",
+    options: { sourceType: "script" }
+  },
+  {
+    name: "lodash.core-4.17.4.js",
+    options: { sourceType: "script" }
+  },
+  {
+    name: "todomvc/react/app.jsx",
+    options: { sourceType: "script", plugins: ["jsx"] }
+  },
+  {
+    name: "todomvc/react/footer.jsx",
+    options: { sourceType: "script", plugins: ["jsx"] }
+  },
+  {
+    name: "todomvc/react/todoItem.jsx",
+    options: { sourceType: "script", plugins: ["jsx"] }
+  },
+  {
+    name: "underscore-1.8.3.js",
+    options: { sourceType: "script" }
+  },
+  {
+    name: "vue.runtime.esm-nobuble-2.4.4.js",
+    options: { sourceType: "module" }
+  }
+].map(({ name, options }) => ({
+  payload: fs.readFileSync(`resources/${name}`, "utf8"),
   options
 }));
 
 module.exports = {
-  name: 'babylon',
+  name: "babylon",
   fn() {
-    return payloads.map(
-      ({ payload, options }) => babylon.parse(payload, options));
+    return payloads.map(({ payload, options }) =>
+      babylon.parse(payload, options)
+    );
   }
 };
