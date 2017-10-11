@@ -23,11 +23,7 @@ const UglifyJS = require('../build/uglify-js-bundled');
 const fs = require('fs');
 
 const payloads = [
-  { name: 'preact-8.2.5.js',
-    options: { compress: { passes: 1 }}},
   { name: 'lodash.core-4.17.4.js',
-    options: { compress: { passes: 1 }}},
-  { name: 'underscore-1.8.3.js',
     options: { compress: { passes: 1 }}}
 ].map(({name, options}) => ({
   payload: fs.readFileSync(`resources/${name}`, 'utf8'),
