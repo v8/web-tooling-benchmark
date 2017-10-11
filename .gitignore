@@ -1,2 +1,3 @@
+build/uglify-js-bundled.js
 dist/
 node_modules/
