@@ -19,19 +19,35 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const Benchmark = require("benchmark");
+const fs = require("fs");
+const lebab = require("lebab");
 
-const suite = new Benchmark.Suite();
+const payloads = [
+  {
+    name: "preact-8.2.5.js",
+    options: [
+      "arg-rest",
+      "arg-spread",
+      "arrow",
+      "class",
+      "for-of",
+      "let",
+      "template",
+      "includes",
+      "obj-method",
+      "obj-shorthand"
+    ]
+  }
+].map(({ name, options }) => ({
+  payload: fs.readFileSync(`resources/${name}`, "utf8"),
+  options
+}));
 
-suite.add(require("./babel-benchmark"));
-suite.add(require("./babylon-benchmark"));
-suite.add(require("./buble-benchmark"));
-suite.add(require("./chai-benchmark"));
-suite.add(require("./lebab-benchmark"));
-suite.add(require("./prettier-benchmark"));
-suite.add(require("./source-map-benchmark"));
-suite.add(require("./typescript-benchmark"));
-suite.add(require("./uglify-js-benchmark"));
-suite.add(require("./uglify-es-benchmark"));
-
-module.exports = suite;
+module.exports = {
+  name: "lebab",
+  fn() {
+    return payloads.map(({ payload, options }) =>
+      lebab.transform(payload, options)
+    );
+  }
+};
