@@ -19,18 +19,29 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const Benchmark = require('benchmark');
+const fs = require('fs');
+const prettier = require('prettier');
 
-const suite = new Benchmark.Suite;
+const payloads = [
+  { name: 'preact-8.2.5.js',
+    options: {semi: false, useTabs: false}},
+  { name: 'lodash.core-4.17.4.js',
+    options: {semi: true, useTabs: true}},
+  { name: 'todomvc/react/app.jsx',
+    options: {semi: false, useTabs: true}},
+  { name: 'todomvc/react/footer.jsx',
+    options: {jsxBracketSameLine: true, semi: true, useTabs: true}},
+  { name: 'todomvc/react/todoItem.jsx',
+    options: {semi: false, singleQuote: true, useTabs: true}},
+].map(({name, options}) => ({
+  payload: fs.readFileSync(`resources/${name}`, 'utf8'),
+  options
+}));
 
-suite.add(require('./babel-benchmark'));
-suite.add(require('./babylon-benchmark'));
-suite.add(require('./buble-benchmark'));
-suite.add(require('./chai-benchmark'));
-suite.add(require('./prettier-benchmark'));
-suite.add(require('./source-map-benchmark'));
-suite.add(require('./typescript-benchmark'));
-suite.add(require('./uglify-js-benchmark'));
-suite.add(require('./uglify-es-benchmark'));
-
-module.exports = suite;
+module.exports = {
+  name: 'prettier',
+  fn() {
+    return payloads.map(
+      ({ payload, options }) => prettier.format(payload, options));
+  }
+};

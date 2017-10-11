@@ -26,6 +26,8 @@ The test suite currently contains:
   to stress by the `babel` and `babylon` tests.
 - A test to stress the [Chai Assertion Library](http://chaijs.com),
   which is commonly used to write unit and integration tests.
+- A test to stress the [Prettier](https://github.com/prettier/prettier)
+  code formatter with various `.js` and `.jsx` inputs.
 - A test to stress the [source-map](https://github.com/mozilla/source-map)
   tool on both parsing and serializing source maps.
 - A test to stress the [TypeScript](https://github.com/Microsoft/TypeScript)

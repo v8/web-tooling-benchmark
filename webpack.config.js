@@ -31,7 +31,8 @@ module.exports = {
   bail: true,
   resolve: {
     alias: {
-      'fs': require.resolve('./src/vfs')
+      'fs': require.resolve('./src/vfs'),
+      'module': require.resolve("./src/mocks/dummy")
     }
   },
   plugins: [
