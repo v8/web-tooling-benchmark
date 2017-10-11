@@ -29,7 +29,9 @@ The test suite currently contains:
 - A test to stress the [source-map](https://github.com/mozilla/source-map)
   tool on both parsing and serializing source maps.
 - A test to stress the [UglifyJS3](https://github.com/mishoo/UglifyJS2)
-  minifier.
+  minifier, running on the (concatenated) JavaScript source for
+  the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer)
+  2.0 benchmark.
 
 ## Building
 

@@ -29,6 +29,7 @@ fs.writeFileSync('resources/lodash.min-4.17.4.js.map', require('raw-loader!../re
 fs.writeFileSync('resources/preact-8.2.5.js', require('raw-loader!../resources/preact-8.2.5.js'));
 fs.writeFileSync('resources/preact-8.2.5.js.map', require('raw-loader!../resources/preact-8.2.5.js.map'));
 fs.writeFileSync('resources/source-map.min-0.5.7.js.map', require('raw-loader!../resources/source-map.min-0.5.7.js.map'));
+fs.writeFileSync('resources/speedometer-es2015-test-2.0.js', require('raw-loader!../resources/speedometer-es2015-test-2.0.js'));
 fs.writeFileSync('resources/todomvc/react/app.jsx', require('raw-loader!../resources/todomvc/react/app.jsx'));
 fs.writeFileSync('resources/todomvc/react/footer.jsx', require('raw-loader!../resources/todomvc/react/footer.jsx'));
 fs.writeFileSync('resources/todomvc/react/todoItem.jsx', require('raw-loader!../resources/todomvc/react/todoItem.jsx'));
