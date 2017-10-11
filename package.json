@@ -1,7 +1,7 @@
 {
   "name": "web-tooling-benchmark",
   "description": "JavaScript Benchmark for common Web Developer workloads",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/bmeurer/web-tooling-benchmark",
   "main": "src/cli.js",
   "scripts": {
