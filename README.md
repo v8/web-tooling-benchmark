@@ -28,6 +28,8 @@ The test suite currently contains:
   which is commonly used to write unit and integration tests.
 - A test to stress the [source-map](https://github.com/mozilla/source-map)
   tool on both parsing and serializing source maps.
+- A test to stress the [UglifyJS3](https://github.com/mishoo/UglifyJS2)
+  minifier.
 
 ## Building
 
