@@ -3,7 +3,7 @@
   "description": "JavaScript Benchmark for common Web Developer workloads",
   "version": "0.0.1",
   "repository": "https://github.com/bmeurer/web-tooling-benchmark",
-  "main": "src/index.js",
+  "main": "src/cli.js",
   "scripts": {
     "build:uglify-es-bundled": "./node_modules/uglify-es/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > ./build/uglify-es-bundled.js",
     "build:uglify-js-bundled": "./node_modules/uglify-js/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > ./build/uglify-js-bundled.js",
@@ -22,8 +22,10 @@
     "benchmark": "^2.1.4",
     "buble": "0.16.0",
     "chai": "4.1.2",
+    "compute-gmean": "^1.1.0",
     "microtime": "^2.1.6",
     "source-map": "0.5.7",
+    "string-align": "^0.2.0",
     "typescript": "2.5.3",
     "virtualfs": "^1.0.0"
   },

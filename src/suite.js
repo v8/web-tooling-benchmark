@@ -32,7 +32,4 @@ suite.add(require('./typescript-benchmark'));
 suite.add(require('./uglify-js-benchmark'));
 suite.add(require('./uglify-es-benchmark'));
 
-suite.on('cycle', function(event) {
-  console.log(String(event.target));
-});
-suite.run();
+module.exports = suite;
