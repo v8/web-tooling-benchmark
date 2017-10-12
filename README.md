@@ -11,6 +11,48 @@ See the [in-depth
 analysis](https://github.com/bmeurer/web-tooling-benchmark/blob/master/docs/in-depth.md)
 for a detailed description of the tests included in this benchmark suite.
 
+## Building
+
+Building the benchmark suite is just a matter of running
+
+```
+$ npm install
+```
+
+assuming that you have a working [Node](https://nodejs.org) installation. This
+was only tested with Node thus far, and it might not work properly with earlier
+versions of Node. Once the command is done, it produces a bundled version that
+is suitable to run in JS shells (i.e. `d8`, `jsc` or `jsshell`) in `dist/run.js`
+and another bundle in `dist/bundle.js` that is used by the browser version in
+`dist/index.html`.
+
+## Running
+
+You can either run the benchmark suite directly via [Node](https://nodejs.org),
+i.e. like this:
+
+```
+$ node src/cli
+Running Web Tooling Benchmark 0.0.2...
+--------------------------------------
+         babel:  7.42 runs/sec  ±6.67%
+       babylon: 13.10 runs/sec  ±6.51%
+         buble:  6.60 runs/sec  ±9.79%
+          chai: 13.20 runs/sec  ±2.01%
+         lebab: 10.14 runs/sec  ±5.94%
+      prettier:  8.27 runs/sec  ±9.31%
+    source-map: 16.50 runs/sec  ±6.46%
+    typescript: 10.29 runs/sec  ±9.79%
+     uglify-js:  7.21 runs/sec ±11.06%
+     uglify-es: 17.72 runs/sec  ±4.67%
+--------------------------------------
+Geometric mean: 11.41 runs/sec
+```
+
+Or you open a web browser and point it to `dist/index.html`, or you can use one
+of the engine JS shells (`d8`, `jsc` or `jsshell`) to run the special bundle
+in `dist/run.js`.
+
 ## Philosophy
 
 I love the web! I love working on [Chromium](http://www.chromium.org) - more
@@ -45,29 +87,3 @@ main motivation behind this benchmark suite. It tries to isolate the
 JavaScript heavy workloads from the most common tools used by the web
 platform. Specifically I/O and other non-JavaScript related aspects are
 excluded from the measurement.
-
-## Building
-
-```
-$ npm install
-```
-
-## Running
-
-```
-$ node src/cli
-Running Web Tooling Benchmark 0.0.2...
---------------------------------------
-         babel:  7.42 runs/sec  ±6.67%
-       babylon: 13.10 runs/sec  ±6.51%
-         buble:  6.60 runs/sec  ±9.79%
-          chai: 13.20 runs/sec  ±2.01%
-         lebab: 10.14 runs/sec  ±5.94%
-      prettier:  8.27 runs/sec  ±9.31%
-    source-map: 16.50 runs/sec  ±6.46%
-    typescript: 10.29 runs/sec  ±9.79%
-     uglify-js:  7.21 runs/sec ±11.06%
-     uglify-es: 17.72 runs/sec  ±4.67%
---------------------------------------
-Geometric mean: 11.41 runs/sec
-```
