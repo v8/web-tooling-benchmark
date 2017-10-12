@@ -12,6 +12,10 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
+    "src/**/*.css": [
+      "prettier --write",
+      "git add"
+    ],
     "src/**/*.js": [
       "prettier --write",
       "git add"
@@ -43,6 +47,8 @@
     "virtualfs": "^1.0.0"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^4.1.1",
+    "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
     "lint-staged": "^4.2.3",
     "node-libs-browser": "github:bmeurer/node-libs-browser#patch-1",
