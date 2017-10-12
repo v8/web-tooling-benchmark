@@ -86,8 +86,19 @@ $ npm install
 ## Running
 
 ```
-$ node src/main
-babylon x 33.47 ops/sec ±11.03% (60 runs sampled)
-chai x 163 ops/sec ±1.95% (80 runs sampled)
-source-map x 15.57 ops/sec ±4.00% (42 runs sampled)
+$ node src/cli
+Running Web Tooling Benchmark 0.0.2...
+--------------------------------------
+         babel:  7.42 runs/sec  ±6.67%
+       babylon: 13.10 runs/sec  ±6.51%
+         buble:  6.60 runs/sec  ±9.79%
+          chai: 13.20 runs/sec  ±2.01%
+         lebab: 10.14 runs/sec  ±5.94%
+      prettier:  8.27 runs/sec  ±9.31%
+    source-map: 16.50 runs/sec  ±6.46%
+    typescript: 10.29 runs/sec  ±9.79%
+     uglify-js:  7.21 runs/sec ±11.06%
+     uglify-es: 17.72 runs/sec  ±4.67%
+--------------------------------------
+Geometric mean: 11.41 runs/sec
 ```
