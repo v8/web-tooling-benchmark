@@ -30,7 +30,7 @@ common parsing workloads.
 
 This benchmark runs the Babylon parser on different popular inputs, including the
 [Preact](https://github.com/developit/preact) 8.2.5 bundle, the [lodash](https://lodash.com)
-4.17.4 bundle, the JSX files from the React TodoMVC example app, the 
+4.17.4 bundle, the JSX files from the React TodoMVC example app, the
 [underscore](http://underscorejs.org/) 1.8.3 bundle, and an ES2015 module containing the untranspiled [Vue](https://github.com/vuejs/vue) bundle
 
 ## buble
@@ -45,6 +45,15 @@ to stress by the `babel` and `babylon` tests.
 
 A test to stress the [Chai Assertion Library](http://chaijs.com),
 which is commonly used to write unit and integration tests.
+
+## coffeescript
+
+[CoffeeScript](http://coffeescript.org/) is a little language that attempts to expose
+the good parts of JavaScript in a simple way. At some point CoffeeScript was very
+popular.
+
+This benchmark runs the CoffeeScript compiler on the [`lexer.coffee`](https://github.com/bmeurer/web-tooling-benchmark/blob/resources/coffeescript-lexer-2.0.1.coffee)
+file from the CoffeeScript 2.0.1 distribution.
 
 ## lebab
 

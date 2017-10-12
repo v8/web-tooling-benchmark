@@ -37,6 +37,7 @@
     "benchmark": "^2.1.4",
     "buble": "0.16.0",
     "chai": "4.1.2",
+    "coffeescript": "2.0.1",
     "compute-gmean": "^1.1.0",
     "lebab": "2.7.7",
     "microtime": "^2.1.6",
