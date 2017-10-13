@@ -24,11 +24,23 @@ const fs = require("fs");
 
 const payloads = [
   {
-    name: "preact-8.2.5.js",
+    name: "jquery-3.2.1.js",
     options: { sourceType: "script" }
   },
   {
     name: "lodash.core-4.17.4.js",
+    options: { sourceType: "script" }
+  },
+  {
+    name: "preact-8.2.5.js",
+    options: { sourceType: "script" }
+  },
+  {
+    name: "redux.min-3.7.2.js",
+    options: { sourceType: "script" }
+  },
+  {
+    name: "speedometer-es2015-test-2.0.js",
     options: { sourceType: "script" }
   },
   {

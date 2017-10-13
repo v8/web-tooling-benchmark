@@ -25,6 +25,10 @@ const virtualfs = require("virtualfs");
 const fs = new virtualfs.VirtualFS();
 fs.mkdirpSync("resources/todomvc/react");
 fs.writeFileSync(
+  "resources/jquery-3.2.1.js",
+  require("raw-loader!../resources/jquery-3.2.1.js")
+);
+fs.writeFileSync(
   "resources/coffeescript-lexer-2.0.1.coffee",
   require("raw-loader!../resources/coffeescript-lexer-2.0.1.coffee")
 );

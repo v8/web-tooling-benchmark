@@ -31,7 +31,11 @@ common parsing workloads.
 This benchmark runs the Babylon parser on different popular inputs, including the
 [Preact](https://github.com/developit/preact) 8.2.5 bundle, the [lodash](https://lodash.com)
 4.17.4 bundle, the JSX files from the React TodoMVC example app, the
-[underscore](http://underscorejs.org/) 1.8.3 bundle, and an ES2015 module containing the untranspiled [Vue](https://github.com/vuejs/vue) bundle
+[underscore](http://underscorejs.org/) 1.8.3 bundle, an ES2015 module containing the
+untranspiled [Vue](https://github.com/vuejs/vue) bundle, the [jQuery](http://jquery.com)
+3.2.1 distribution, the minified [Redux](https://redux.js.org) 3.7.2 distribution, and
+the (concatenated) JavaScript source for the Vanilla ES2015 test in the
+[Speedometer](https://browserbench.org/Speedometer).
 
 ## buble
 
