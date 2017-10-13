@@ -27,7 +27,7 @@ There's no formal test suite yet. For now the process is roughly:
 
 ## Creating a new benchmark
 
-> Example: https://github.com/bmeurer/web-tooling-benchmark/commit/d9f2e6525c45aa5b9d9d366b008a8296984f0ac4
+> Example: https://github.com/bmeurer/web-tooling-benchmark/pull/10
 
 - Create a new issue that describes the motivation for including the benchmark. Include any relevant information.
 - The pull request should include:
