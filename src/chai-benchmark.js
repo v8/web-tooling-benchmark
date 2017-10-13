@@ -822,6 +822,8 @@ describe("assert", () => {
 });
 
 describe("expect", () => {
+  const sym = Symbol();
+
   describe("proxify", () => {
     it("throws when invalid property follows expect", function() {
       expect(() => {
@@ -970,7 +972,7 @@ describe("expect", () => {
   });
 
   it("exist", () => {
-    var foo = "bar";
+    const foo = "bar";
     var bar;
 
     expect(foo).to.exist;
@@ -1103,6 +1105,865 @@ describe("expect", () => {
     expect(() => {
       expect(3, "blah").to.an.instanceof(Foo);
     }).to.throw(AssertionError, "blah: expected 3 to be an instance of Foo");
+  });
+
+  it("within(start, finish)", () => {
+    expect(5).to.be.within(5, 10);
+    expect(5).to.be.within(3, 6);
+    expect(5).to.be.within(3, 5);
+    expect(5).to.not.be.within(1, 3);
+    expect("foo").to.have.length.within(2, 4);
+    expect("foo").to.have.lengthOf.within(2, 4);
+    expect([1, 2, 3]).to.have.length.within(2, 4);
+    expect([1, 2, 3]).to.have.lengthOf.within(2, 4);
+
+    expect(() => {
+      expect(5).to.not.be.within(4, 6, "blah");
+    }).to.throw(AssertionError, "blah: expected 5 to not be within 4..6");
+
+    expect(() => {
+      expect(5, "blah").to.not.be.within(4, 6);
+    }).to.throw(AssertionError, "blah: expected 5 to not be within 4..6");
+
+    expect(() => {
+      expect(10).to.be.within(50, 100, "blah");
+    }).to.throw(AssertionError, "blah: expected 10 to be within 50..100");
+
+    expect(() => {
+      expect("foo").to.have.length.within(5, 7, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length within 5..7"
+    );
+
+    expect(() => {
+      expect("foo", "blah").to.have.length.within(5, 7);
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length within 5..7"
+    );
+
+    expect(() => {
+      expect("foo").to.have.lengthOf.within(5, 7, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length within 5..7"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.length.within(5, 7, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length within 5..7"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.lengthOf.within(5, 7, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length within 5..7"
+    );
+
+    expect(() => {
+      expect(null).to.be.within(0, 1, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(null, "blah").to.be.within(0, 1);
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.be.within(null, 1, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: the arguments to within must be numbers"
+    );
+
+    expect(() => {
+      expect(1, "blah").to.be.within(null, 1);
+    }).to.throw(
+      AssertionError,
+      "blah: the arguments to within must be numbers"
+    );
+
+    expect(() => {
+      expect(1).to.be.within(0, null, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: the arguments to within must be numbers"
+    );
+
+    expect(() => {
+      expect(1, "blah").to.be.within(0, null);
+    }).to.throw(
+      AssertionError,
+      "blah: the arguments to within must be numbers"
+    );
+
+    expect(() => {
+      expect(null).to.not.be.within(0, 1, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.not.be.within(null, 1, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: the arguments to within must be numbers"
+    );
+
+    expect(() => {
+      expect(1).to.not.be.within(0, null, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: the arguments to within must be numbers"
+    );
+
+    expect(() => {
+      expect(1).to.have.length.within(5, 7, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1, "blah").to.have.length.within(5, 7);
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1).to.have.lengthOf.within(5, 7, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+  });
+
+  it("within(start, finish) (dates)", () => {
+    const now = new Date();
+    const oneSecondAgo = new Date(now.getTime() - 1000);
+    const oneSecondAfter = new Date(now.getTime() + 1000);
+    const nowUTC = now.toUTCString();
+    const beforeUTC = oneSecondAgo.toUTCString();
+    const afterUTC = oneSecondAfter.toUTCString();
+
+    expect(now).to.be.within(oneSecondAgo, oneSecondAfter);
+    expect(now).to.be.within(now, oneSecondAfter);
+    expect(now).to.be.within(now, now);
+    expect(oneSecondAgo).to.not.be.within(now, oneSecondAfter);
+
+    expect(() => {
+      expect(now).to.not.be.within(now, oneSecondAfter, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " +
+        nowUTC +
+        " to not be within " +
+        nowUTC +
+        ".." +
+        afterUTC
+    );
+
+    expect(() => {
+      expect(now, "blah").to.not.be.within(oneSecondAgo, oneSecondAfter);
+    }).to.throw(
+      AssertionError,
+      "blah: expected " +
+        nowUTC +
+        " to not be within " +
+        beforeUTC +
+        ".." +
+        afterUTC
+    );
+
+    expect(() => {
+      expect(now).to.have.length.within(5, 7, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " + nowUTC + " to have property 'length'"
+    );
+
+    expect(() => {
+      expect("foo").to.have.lengthOf.within(now, 7, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: the arguments to within must be numbers"
+    );
+
+    expect(() => {
+      expect(now).to.be.within(now, 1, "blah");
+    }).to.throw(AssertionError, "blah: the arguments to within must be dates");
+
+    expect(() => {
+      expect(now).to.be.within(null, now, "blah");
+    }).to.throw(AssertionError, "blah: the arguments to within must be dates");
+
+    expect(() => {
+      expect(now).to.be.within(now, undefined, "blah");
+    }).to.throw(AssertionError, "blah: the arguments to within must be dates");
+
+    expect(() => {
+      expect(now, "blah").to.be.within(1, now);
+    }).to.throw(AssertionError, "blah: the arguments to within must be dates");
+
+    expect(() => {
+      expect(now, "blah").to.be.within(now, 1);
+    }).to.throw(AssertionError, "blah: the arguments to within must be dates");
+
+    expect(() => {
+      expect(null).to.not.be.within(now, oneSecondAfter, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+  });
+
+  it("above(n)", () => {
+    expect(5).to.be.above(2);
+    expect(5).to.be.greaterThan(2);
+    expect(5).to.not.be.above(5);
+    expect(5).to.not.be.above(6);
+    expect("foo").to.have.length.above(2);
+    expect("foo").to.have.lengthOf.above(2);
+    expect([1, 2, 3]).to.have.length.above(2);
+    expect([1, 2, 3]).to.have.lengthOf.above(2);
+
+    expect(() => {
+      expect(5).to.be.above(6, "blah");
+    }).to.throw(AssertionError, "blah: expected 5 to be above 6");
+
+    expect(() => {
+      expect(5, "blah").to.be.above(6);
+    }).to.throw(AssertionError, "blah: expected 5 to be above 6");
+
+    expect(() => {
+      expect(10).to.not.be.above(6, "blah");
+    }).to.throw(AssertionError, "blah: expected 10 to be at most 6");
+
+    expect(() => {
+      expect("foo").to.have.length.above(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length above 4 but got 3"
+    );
+
+    expect(() => {
+      expect("foo", "blah").to.have.length.above(4);
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length above 4 but got 3"
+    );
+
+    expect(() => {
+      expect("foo").to.have.lengthOf.above(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length above 4 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.length.above(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length above 4 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.lengthOf.above(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length above 4 but got 3"
+    );
+
+    expect(() => {
+      expect(null).to.be.above(0, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(null, "blah").to.be.above(0);
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.be.above(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to above must be a number");
+
+    expect(() => {
+      expect(1, "blah").to.be.above(null);
+    }).to.throw(AssertionError, "blah: the argument to above must be a number");
+
+    expect(() => {
+      expect(null).to.not.be.above(0, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.not.be.above(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to above must be a number");
+
+    expect(() => {
+      expect(1).to.have.length.above(0, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1, "blah").to.have.length.above(0);
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1).to.have.lengthOf.above(0, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+  });
+
+  it("above(n) (dates)", () => {
+    const now = new Date();
+    const oneSecondAgo = new Date(now.getTime() - 1000);
+    const oneSecondAfter = new Date(now.getTime() + 1000);
+
+    expect(now).to.be.above(oneSecondAgo);
+    expect(now).to.be.greaterThan(oneSecondAgo);
+    expect(now).to.not.be.above(now);
+    expect(now).to.not.be.above(oneSecondAfter);
+
+    expect(() => {
+      expect(now).to.be.above(oneSecondAfter, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " +
+        now.toUTCString() +
+        " to be above " +
+        oneSecondAfter.toUTCString()
+    );
+
+    expect(() => {
+      expect(10).to.not.be.above(6, "blah");
+    }).to.throw(AssertionError, "blah: expected 10 to be at most 6");
+
+    expect(() => {
+      expect(now).to.have.length.above(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " + now.toUTCString() + " to have property 'length'"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.length.above(now, "blah");
+    }).to.throw(AssertionError, "blah: the argument to above must be a number");
+
+    expect(() => {
+      expect(null).to.be.above(now, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(now).to.be.above(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to above must be a date");
+
+    expect(() => {
+      expect(null).to.have.length.above(0, "blah");
+    }).to.throw(AssertionError, "blah: Target cannot be null or undefined.");
+  });
+
+  it("least(n)", () => {
+    expect(5).to.be.at.least(2);
+    expect(5).to.be.at.least(5);
+    expect(5).to.not.be.at.least(6);
+    expect("foo").to.have.length.of.at.least(2);
+    expect("foo").to.have.lengthOf.at.least(2);
+    expect([1, 2, 3]).to.have.length.of.at.least(2);
+    expect([1, 2, 3]).to.have.lengthOf.at.least(2);
+
+    expect(() => {
+      expect(5).to.be.at.least(6, "blah");
+    }).to.throw(AssertionError, "blah: expected 5 to be at least 6");
+
+    expect(() => {
+      expect(5, "blah").to.be.at.least(6);
+    }).to.throw(AssertionError, "blah: expected 5 to be at least 6");
+
+    expect(() => {
+      expect(10).to.not.be.at.least(6, "blah");
+    }).to.throw(AssertionError, "blah: expected 10 to be below 6");
+
+    expect(() => {
+      expect("foo").to.have.length.of.at.least(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length at least 4 but got 3"
+    );
+
+    expect(() => {
+      expect("foo", "blah").to.have.length.of.at.least(4);
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length at least 4 but got 3"
+    );
+
+    expect(() => {
+      expect("foo").to.have.lengthOf.at.least(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length at least 4 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.length.of.at.least(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length at least 4 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.lengthOf.at.least(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length at least 4 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3, 4]).to.not.have.length.of.at.least(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3, 4 ] to have a length below 4"
+    );
+
+    expect(() => {
+      expect([1, 2, 3, 4]).to.not.have.lengthOf.at.least(4, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3, 4 ] to have a length below 4"
+    );
+
+    expect(() => {
+      expect(null).to.be.at.least(0, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(null, "blah").to.be.at.least(0);
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.be.at.least(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to least must be a number");
+
+    expect(() => {
+      expect(1, "blah").to.be.at.least(null);
+    }).to.throw(AssertionError, "blah: the argument to least must be a number");
+
+    expect(() => {
+      expect(null).to.not.be.at.least(0, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.not.be.at.least(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to least must be a number");
+
+    expect(() => {
+      expect(1).to.have.length.at.least(0, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1, "blah").to.have.length.at.least(0);
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1).to.have.lengthOf.at.least(0, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+  });
+
+  it("below(n)", () => {
+    expect(2).to.be.below(5);
+    expect(2).to.be.lessThan(5);
+    expect(2).to.not.be.below(2);
+    expect(2).to.not.be.below(1);
+    expect("foo").to.have.length.below(4);
+    expect("foo").to.have.lengthOf.below(4);
+    expect([1, 2, 3]).to.have.length.below(4);
+    expect([1, 2, 3]).to.have.lengthOf.below(4);
+
+    expect(() => {
+      expect(6).to.be.below(5, "blah");
+    }).to.throw(AssertionError, "blah: expected 6 to be below 5");
+
+    expect(() => {
+      expect(6, "blah").to.be.below(5);
+    }).to.throw(AssertionError, "blah: expected 6 to be below 5");
+
+    expect(() => {
+      expect(6).to.not.be.below(10, "blah");
+    }).to.throw(AssertionError, "blah: expected 6 to be at least 10");
+
+    expect(() => {
+      expect("foo").to.have.length.below(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length below 2 but got 3"
+    );
+
+    expect(() => {
+      expect("foo", "blah").to.have.length.below(2);
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length below 2 but got 3"
+    );
+
+    expect(() => {
+      expect("foo").to.have.lengthOf.below(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length below 2 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.length.below(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length below 2 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.lengthOf.below(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length below 2 but got 3"
+    );
+
+    expect(() => {
+      expect(null).to.be.below(0, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(null, "blah").to.be.below(0);
+    }, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.be.below(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to below must be a number");
+
+    expect(() => {
+      expect(1, "blah").to.be.below(null);
+    }).to.throw(AssertionError, "blah: the argument to below must be a number");
+
+    expect(() => {
+      expect(null).to.not.be.below(0, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.not.be.below(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to below must be a number");
+
+    expect(() => {
+      expect(1).to.have.length.below(0, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1, "blah").to.have.length.below(0);
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1).to.have.lengthOf.below(0, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+  });
+
+  it("below(n) (dates)", () => {
+    const now = new Date();
+    const oneSecondAgo = new Date(now.getTime() - 1000);
+    const oneSecondAfter = new Date(now.getTime() + 1000);
+
+    expect(now).to.be.below(oneSecondAfter);
+    expect(oneSecondAgo).to.be.lessThan(now);
+    expect(now).to.not.be.below(oneSecondAgo);
+    expect(oneSecondAfter).to.not.be.below(oneSecondAgo);
+
+    expect(() => {
+      expect(now).to.be.below(oneSecondAgo, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " +
+        now.toUTCString() +
+        " to be below " +
+        oneSecondAgo.toUTCString()
+    );
+
+    expect(() => {
+      expect(now).to.not.be.below(oneSecondAfter, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " +
+        now.toUTCString() +
+        " to be at least " +
+        oneSecondAfter.toUTCString()
+    );
+
+    expect(() => {
+      expect("foo").to.have.length.below(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length below 2 but got 3"
+    );
+
+    expect(() => {
+      expect(null).to.be.below(now, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.be.below(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to below must be a number");
+
+    expect(() => {
+      expect(now).to.not.be.below(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to below must be a date");
+
+    expect(() => {
+      expect(now).to.have.length.below(0, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " + now.toUTCString() + " to have property 'length'"
+    );
+
+    expect(() => {
+      expect("asdasd").to.have.length.below(now, "blah");
+    }).to.throw(AssertionError, "blah: the argument to below must be a number");
+  });
+
+  it("most(n)", () => {
+    expect(2).to.be.at.most(5);
+    expect(2).to.be.at.most(2);
+    expect(2).to.not.be.at.most(1);
+    expect("foo").to.have.length.of.at.most(4);
+    expect("foo").to.have.lengthOf.at.most(4);
+    expect([1, 2, 3]).to.have.length.of.at.most(4);
+    expect([1, 2, 3]).to.have.lengthOf.at.most(4);
+
+    expect(() => {
+      expect(6).to.be.at.most(5, "blah");
+    }).to.throw(AssertionError, "blah: expected 6 to be at most 5");
+
+    expect(() => {
+      expect(6, "blah").to.be.at.most(5);
+    }).to.throw(AssertionError, "blah: expected 6 to be at most 5");
+
+    expect(() => {
+      expect(6).to.not.be.at.most(10, "blah");
+    }).to.throw(AssertionError, "blah: expected 6 to be above 10");
+
+    expect(() => {
+      expect("foo").to.have.length.of.at.most(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length at most 2 but got 3"
+    );
+
+    expect(() => {
+      expect("foo", "blah").to.have.length.of.at.most(2);
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length at most 2 but got 3"
+    );
+
+    expect(() => {
+      expect("foo").to.have.lengthOf.at.most(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'foo' to have a length at most 2 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.length.of.at.most(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length at most 2 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2, 3]).to.have.lengthOf.at.most(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2, 3 ] to have a length at most 2 but got 3"
+    );
+
+    expect(() => {
+      expect([1, 2]).to.not.have.length.of.at.most(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2 ] to have a length above 2"
+    );
+
+    expect(() => {
+      expect([1, 2]).to.not.have.lengthOf.at.most(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected [ 1, 2 ] to have a length above 2"
+    );
+
+    expect(() => {
+      expect(null).to.be.at.most(0, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(null, "blah").to.be.at.most(0);
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.be.at.most(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to most must be a number");
+
+    expect(() => {
+      expect(1, "blah").to.be.at.most(null);
+    }).to.throw(AssertionError, "blah: the argument to most must be a number");
+
+    expect(() => {
+      expect(null).to.not.be.at.most(0, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(1).to.not.be.at.most(null, "blah");
+    }).to.throw(AssertionError, "blah: the argument to most must be a number");
+
+    expect(() => {
+      expect(1).to.have.length.of.at.most(0, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1, "blah").to.have.length.of.at.most(0);
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+
+    expect(() => {
+      expect(1).to.have.lengthOf.at.most(0, "blah");
+    }).to.throw(AssertionError, "blah: expected 1 to have property 'length'");
+  });
+
+  it("most(n) (dates)", () => {
+    const now = new Date();
+    const oneSecondBefore = new Date(now.getTime() - 1000);
+    const oneSecondAfter = new Date(now.getTime() + 1000);
+    const nowUTC = now.toUTCString();
+    const beforeUTC = oneSecondBefore.toUTCString();
+    const afterUTC = oneSecondAfter.toUTCString();
+
+    expect(now).to.be.at.most(oneSecondAfter);
+    expect(now).to.be.at.most(now);
+    expect(now).to.not.be.at.most(oneSecondBefore);
+
+    expect(() => {
+      expect(now).to.be.at.most(oneSecondBefore, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " + nowUTC + " to be at most " + beforeUTC
+    );
+
+    expect(() => {
+      expect(now).to.not.be.at.most(now, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " + nowUTC + " to be above " + nowUTC
+    );
+
+    expect(() => {
+      expect(now).to.have.length.of.at.most(2, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected " + nowUTC + " to have property 'length'"
+    );
+
+    expect(() => {
+      expect("foo", "blah").to.have.length.of.at.most(now);
+    }).to.throw(AssertionError, "blah: the argument to most must be a number");
+
+    expect(() => {
+      expect([1, 2, 3]).to.not.have.length.of.at.most(now, "blah");
+    }).to.throw(AssertionError, "blah: the argument to most must be a number");
+
+    expect(() => {
+      expect(null).to.be.at.most(now, "blah");
+    }).to.throw(AssertionError, "blah: expected null to be a number or a date");
+
+    expect(() => {
+      expect(now, "blah").to.be.at.most(null);
+    }).to.throw(AssertionError, "blah: the argument to most must be a date");
+
+    expect(() => {
+      expect(1).to.be.at.most(now, "blah");
+    }).to.throw(AssertionError, "blah: the argument to most must be a number");
+
+    expect(() => {
+      expect(now, "blah").to.be.at.most(1);
+    }).to.throw(AssertionError, "blah: the argument to most must be a date");
+
+    expect(() => {
+      expect(now).to.not.be.at.most(undefined, "blah");
+    }).to.throw(AssertionError, "blah: the argument to most must be a date");
+  });
+
+  it("match(regexp)", () => {
+    expect("foobar").to.match(/^foo/);
+    expect("foobar").to.matches(/^foo/);
+    expect("foobar").to.not.match(/^bar/);
+
+    expect(() => {
+      expect("foobar").to.match(/^bar/i, "blah");
+    }).to.throw(AssertionError, "blah: expected 'foobar' to match /^bar/i");
+
+    expect(() => {
+      expect("foobar", "blah").to.match(/^bar/i);
+    }).to.throw(AssertionError, "blah: expected 'foobar' to match /^bar/i");
+
+    expect(() => {
+      expect("foobar").to.matches(/^bar/i, "blah");
+    }).to.throw(AssertionError, "blah: expected 'foobar' to match /^bar/i");
+
+    expect(() => {
+      expect("foobar").to.not.match(/^foo/i, "blah");
+    }).to.throw(AssertionError, "blah: expected 'foobar' not to match /^foo/i");
+  });
+
+  it("lengthOf(n)", () => {
+    expect("test").to.have.length(4);
+    expect("test").to.have.lengthOf(4);
+    expect("test").to.not.have.length(3);
+    expect("test").to.not.have.lengthOf(3);
+    expect([1, 2, 3]).to.have.length(3);
+    expect([1, 2, 3]).to.have.lengthOf(3);
+
+    expect(() => {
+      expect(4).to.have.length(3, "blah");
+    }).to.throw(AssertionError, "blah: expected 4 to have property 'length'");
+
+    expect(() => {
+      expect(4, "blah").to.have.length(3);
+    }).to.throw(AssertionError, "blah: expected 4 to have property 'length'");
+
+    expect(() => {
+      expect(4).to.have.lengthOf(3, "blah");
+    }).to.throw(AssertionError, "blah: expected 4 to have property 'length'");
+
+    expect(() => {
+      expect("asd").to.not.have.length(3, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'asd' to not have a length of 3"
+    );
+    expect(() => {
+      expect("asd").to.not.have.lengthOf(3, "blah");
+    }).to.throw(
+      AssertionError,
+      "blah: expected 'asd' to not have a length of 3"
+    );
+  });
+
+  it("eql(val)", () => {
+    expect("test").to.eql("test");
+    expect({ foo: "bar" }).to.eql({ foo: "bar" });
+    expect(1).to.eql(1);
+    expect("4").to.not.eql(4);
+    expect(sym).to.eql(sym);
+
+    expect(() => {
+      expect(4).to.eql(3, "blah");
+    }).to.throw(AssertionError, "blah: expected 4 to deeply equal 3");
+  });
+
+  it("equal(val)", () => {
+    expect("test").to.equal("test");
+    expect(1).to.equal(1);
+    expect(sym).to.equal(sym);
+
+    expect(() => {
+      expect(4).to.equal(3, "blah");
+    }).to.throw(AssertionError, "blah: expected 4 to equal 3");
+
+    expect(() => {
+      expect(4, "blah").to.equal(3);
+    }).to.throw(AssertionError, "blah: expected 4 to equal 3");
+
+    expect(() => {
+      expect("4").to.equal(4, "blah");
+    }).to.throw(AssertionError, "blah: expected '4' to equal 4");
   });
 
   it("deep.equal(val)", () => {
@@ -2801,8 +3662,6 @@ describe("expect", () => {
     expect(nFn).to.not.decrease(lenFn);
     expect(pFn).to.not.decrease(lenFn);
   });
-
-  const sym = Symbol();
 
   it("extensible", function() {
     const nonExtensibleObject = Object.preventExtensions({});

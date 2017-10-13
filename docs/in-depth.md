@@ -43,8 +43,17 @@ to stress by the `babel` and `babylon` tests.
 
 ## chai
 
-A test to stress the [Chai Assertion Library](http://chaijs.com),
-which is commonly used to write unit and integration tests.
+[Chai](http://chaijs.com) is a popular BDD / TDD assertion library for
+[Node](https://www.nodejs.org) and the browser that can be delightfully
+paired with any test driver framework for JavaScript. It is commonly used
+to write unit and integration tests. As such this test is not just a good
+benchmark for web tooling on the [Node](https://www.nodejs.org) side, but
+is also very relevant to the browser as tests often need to be run in the
+browser too.
+
+This benchmark is based on the test suite that comes with Chai and
+essentially uses the Chai BDD style interface to test the Chai library
+itself.
 
 ## coffeescript
 
