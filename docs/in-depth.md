@@ -78,7 +78,7 @@ is a simple sequence of assignments. This gets rid of most intermediate computat
 and object allocations. It currently focuses on React Native use cases.
 
 This benchmark runs prepack on both the [Preact](https://github.com/developit/preact)
-8.2.5 bundle (unminified) as well as the [Redux](http://reduxjs.org) 3.7.2 bundle
+8.2.5 bundle (unminified) as well as the [Redux](https://github.com/reactjs/redux) 3.7.2 bundle
 (minified).
 
 ## prettier
