@@ -69,6 +69,18 @@ file from the CoffeeScript 2.0.1 distribution.
 A test to stress the [Lebab](https://github.com/lebab/lebab)
 ES5 to ES6/ES7 transpiler, modernizing the preact bundle.
 
+## prepack
+
+[Prepack](https://prepack.io) is a tool that optimizes JavaScript source code:
+Computations that can be done at compile-time instead of run-time get eliminated.
+Prepack replaces the global code of a JavaScript bundle with equivalent code that
+is a simple sequence of assignments. This gets rid of most intermediate computations
+and object allocations. It currently focuses on React Native use cases.
+
+This benchmark runs prepack on both the [Preact](https://github.com/developit/preact)
+8.2.5 bundle (unminified) as well as the [Redux](http://reduxjs.org) 3.7.2 bundle
+(minified).
+
 ## prettier
 
 A test to stress the [Prettier](https://github.com/prettier/prettier)

@@ -45,6 +45,10 @@ fs.writeFileSync(
   require("raw-loader!../resources/preact-8.2.5.js.map")
 );
 fs.writeFileSync(
+  "resources/redux.min-3.7.2.js",
+  require("raw-loader!../resources/redux.min-3.7.2.js")
+);
+fs.writeFileSync(
   "resources/source-map.min-0.5.7.js.map",
   require("raw-loader!../resources/source-map.min-0.5.7.js.map")
 );
