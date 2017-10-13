@@ -23,6 +23,7 @@ const Benchmark = require("benchmark");
 
 const suite = new Benchmark.Suite();
 
+suite.add(require("./acorn-benchmark"));
 suite.add(require("./babel-benchmark"));
 suite.add(require("./babylon-benchmark"));
 suite.add(require("./buble-benchmark"));

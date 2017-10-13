@@ -7,6 +7,23 @@ reports a single score at the end that balances them using geometric mean.
 Note that scores of different versions of the Web Tooling Benchmark are not comparable
 to each other.
 
+## acorn
+
+[Acorn](https://github.com/ternjs/acorn) is a tiny, fast JavaScript parser, written
+completely in JavaScript. Acorn is the basis for many other JavaScript compiler
+and code analysis tools (i.e. the parser used by [Babel](http://babeljs.io) today
+is based on acorn).
+
+This benchmarks runs the Acorn tokenizer, the parser and the full AST (Abstract
+Syntax Tree) walker on several popular inputs, including the
+[Preact](https://github.com/developit/preact) 8.2.5 bundle, the [lodash](https://lodash.com)
+4.17.4 bundle, the [underscore](http://underscorejs.org/) 1.8.3 bundle, an ES2015 module
+containing the untranspiled [Vue](https://github.com/vuejs/vue) bundle, the
+[jQuery](http://jquery.com) 3.2.1 distribution, the minified [Redux](https://redux.js.org)
+3.7.2 distribution, the [Backbone.js](http://backbonejs.org) 1.1.0 bundle, and the
+(concatenated) JavaScript source for the Vanilla ES2015 test in the
+[Speedometer](https://browserbench.org/Speedometer).
+
 ## babel
 
 [Babel](https://github.com/babel/babel) is a transpiler that compiles modern JavaScipt
@@ -25,8 +42,7 @@ separately by the `babylon` benchmark below.
 [Babylon](https://github.com/babel/babylon) is the frontend for the Babel transpiler and
 deals with transforming the JavaScript input into a so-called AST (Abstract Syntax Tree)
 that can be consumed by the core transformation logic in Babel. It is built on top of
-[Acorn](https://github.com/ternjs/acorn) and thus representative of a whole class of
-common parsing workloads.
+[Acorn](https://github.com/ternjs/acorn) nowadays.
 
 This benchmark runs the Babylon parser on different popular inputs, including the
 [Preact](https://github.com/developit/preact) 8.2.5 bundle, the [lodash](https://lodash.com)

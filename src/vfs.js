@@ -25,6 +25,10 @@ const virtualfs = require("virtualfs");
 const fs = new virtualfs.VirtualFS();
 fs.mkdirpSync("resources/todomvc/react");
 fs.writeFileSync(
+  "resources/backbone-1.1.0.js",
+  require("raw-loader!../resources/backbone-1.1.0.js")
+);
+fs.writeFileSync(
   "resources/jquery-3.2.1.js",
   require("raw-loader!../resources/jquery-3.2.1.js")
 );
