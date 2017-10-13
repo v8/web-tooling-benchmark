@@ -39,6 +39,7 @@
     "chai": "4.1.2",
     "coffeescript": "2.0.1",
     "compute-gmean": "^1.1.0",
+    "jshint": "2.9.5",
     "lebab": "2.7.7",
     "microtime": "^2.1.6",
     "prepack": "0.2.9",

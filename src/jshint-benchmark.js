@@ -19,22 +19,18 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const Benchmark = require("benchmark");
+const fs = require("fs");
+const jshint = require("jshint");
 
-const suite = new Benchmark.Suite();
+const inputs = [
+  "lodash.core-4.17.4.js",
+  "preact-8.2.5.js",
+  "underscore-1.8.3.js"
+].map(name => fs.readFileSync(`resources/${name}`, "utf8"));
 
-suite.add(require("./babel-benchmark"));
-suite.add(require("./babylon-benchmark"));
-suite.add(require("./buble-benchmark"));
-suite.add(require("./chai-benchmark"));
-suite.add(require("./coffeescript-benchmark"));
-suite.add(require("./jshint-benchmark"));
-suite.add(require("./lebab-benchmark"));
-suite.add(require("./prepack-benchmark"));
-suite.add(require("./prettier-benchmark"));
-suite.add(require("./source-map-benchmark"));
-suite.add(require("./typescript-benchmark"));
-suite.add(require("./uglify-js-benchmark"));
-suite.add(require("./uglify-es-benchmark"));
-
-module.exports = suite;
+module.exports = {
+  name: "jshint",
+  fn() {
+    return inputs.forEach(input => jshint.JSHINT(input));
+  }
+};

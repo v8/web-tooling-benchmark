@@ -68,6 +68,16 @@ popular.
 This benchmark runs the CoffeeScript compiler on the [`lexer.coffee`](https://github.com/bmeurer/web-tooling-benchmark/blob/resources/coffeescript-lexer-2.0.1.coffee)
 file from the CoffeeScript 2.0.1 distribution.
 
+## jshint
+
+[JSHint](http://jshint.com) is a program that flags suspicious usage in programs written
+in JavaScript. At some point it was very popular, but nowadays it seems that many projects
+have switch or are switching to [ESLint](https://eslint.org).
+
+This benchmark runs JSHint on the [lodash](https://lodash.com) 4.17.4 bundle, the
+[Preact](http://preactjs.com) 8.2.5 bundle, and the [underscore](http://underscorejs.org)
+1.8.3 distribution.
+
 ## lebab
 
 A test to stress the [Lebab](https://github.com/lebab/lebab)
