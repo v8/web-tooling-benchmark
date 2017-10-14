@@ -19,25 +19,24 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const Benchmark = require("benchmark");
+const espree = require("espree");
+const fs = require("fs");
 
-const suite = new Benchmark.Suite();
+const payloads = [
+  "backbone-1.1.0.js",
+  "jquery-3.2.1.js",
+  "mootools-core-1.6.0.js",
+  "underscore-1.8.3.js"
+].map(name => fs.readFileSync(`resources/${name}`, "utf8"));
 
-suite.add(require("./acorn-benchmark"));
-suite.add(require("./babel-benchmark"));
-suite.add(require("./babylon-benchmark"));
-suite.add(require("./buble-benchmark"));
-suite.add(require("./chai-benchmark"));
-suite.add(require("./coffeescript-benchmark"));
-suite.add(require("./espree-benchmark"));
-suite.add(require("./esprima-benchmark"));
-suite.add(require("./jshint-benchmark"));
-suite.add(require("./lebab-benchmark"));
-suite.add(require("./prepack-benchmark"));
-suite.add(require("./prettier-benchmark"));
-suite.add(require("./source-map-benchmark"));
-suite.add(require("./typescript-benchmark"));
-suite.add(require("./uglify-js-benchmark"));
-suite.add(require("./uglify-es-benchmark"));
-
-module.exports = suite;
+module.exports = {
+  name: "espree",
+  fn() {
+    return payloads.map(payload => {
+      let count = 0;
+      count += espree.tokenize(payload, { loc: true, range: true }).length;
+      count += espree.parse(payload, { loc: true, range: true }).body.length;
+      return count;
+    });
+  }
+};

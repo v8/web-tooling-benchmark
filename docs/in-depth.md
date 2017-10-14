@@ -86,6 +86,22 @@ popular.
 This benchmark runs the CoffeeScript compiler on the [`lexer.coffee`](https://github.com/bmeurer/web-tooling-benchmark/blob/resources/coffeescript-lexer-2.0.1.coffee)
 file from the CoffeeScript 2.0.1 distribution.
 
+## espree
+
+[Espree](https://github.com/eslint/espree) started out as a fork of Esprima v1.2.2,
+the last stable published released of Esprima before work on ECMAScript 6 began.
+Espree is now built on top of Acorn, which has a modular architecture that allows
+extension of core functionality. The goal of Espree is to produce output that is
+similar to Esprima with a similar API so that it can be used in place of Esprima.
+The popular analysis framework [ESLint](https://eslint.org) is built on Espree
+today.
+
+This benchmark runs Espree on a several common scripts, including
+- the [Backbone.js](http://backbonejs.org) 1.1.0 bundle,
+- the [jQuery](http://jquery.com) 3.2.1 distribution,
+- the [MooTools](https://mootools.net) 1.6.0 bundle,
+- and the [underscore](http://underscorejs.org/) 1.8.3 bundle.
+
 ## esprima
 
 [Esprima](http://esprima.org) is a high performance, standard-compliant ECMAScript parser
