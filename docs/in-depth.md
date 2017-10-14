@@ -11,18 +11,20 @@ to each other.
 
 [Acorn](https://github.com/ternjs/acorn) is a tiny, fast JavaScript parser, written
 completely in JavaScript. Acorn is the basis for many other JavaScript compiler
-and code analysis tools (i.e. the parser used by [Babel](http://babeljs.io) today
-is based on acorn).
+and code analysis tools, i.e. [webpack](https://webpack.js.org) uses acorn and
+the [Babylon](https://github.com/babel/babylon) parser used by
+[Babel](http://babeljs.io) today is also based on acorn.
 
 This benchmarks runs the Acorn tokenizer, the parser and the full AST (Abstract
-Syntax Tree) walker on several popular inputs, including the
-[Preact](https://github.com/developit/preact) 8.2.5 bundle, the [lodash](https://lodash.com)
-4.17.4 bundle, the [underscore](http://underscorejs.org/) 1.8.3 bundle, an ES2015 module
-containing the untranspiled [Vue](https://github.com/vuejs/vue) bundle, the
-[jQuery](http://jquery.com) 3.2.1 distribution, the minified [Redux](https://redux.js.org)
-3.7.2 distribution, the [Backbone.js](http://backbonejs.org) 1.1.0 bundle, and the
-(concatenated) JavaScript source for the Vanilla ES2015 test in the
-[Speedometer](https://browserbench.org/Speedometer).
+Syntax Tree) walker on several popular inputs, including
+- the [Preact](https://github.com/developit/preact) 8.2.5 bundle,
+- the [lodash](https://lodash.com) 4.17.4 bundle,
+- the [underscore](http://underscorejs.org/) 1.8.3 bundle,
+- an ES2015 module containing the untranspiled [Vue](https://github.com/vuejs/vue) bundle,
+- the [jQuery](http://jquery.com) 3.2.1 distribution,
+- the minified [Redux](https://redux.js.org) 3.7.2 distribution,
+- the [Backbone.js](http://backbonejs.org) 1.1.0 bundle,
+- and the (concatenated) JavaScript source for the Vanilla ES2015 test in the [Speedometer](https://browserbench.org/Speedometer).
 
 ## babel
 
