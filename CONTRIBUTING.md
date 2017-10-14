@@ -21,6 +21,7 @@ npm install
 There's no formal test suite yet. For now the process is roughly:
 
 - [ ] Check that `npm install` passes.
+- [ ] Check that `npm test` passes.
 - [ ] Check that the suite runs in `node`, via `node src/cli`.
 - [ ] Check that the suite runs in `d8` via `/path/to/d8 dist/run.js`.
 - [ ] Check that the browser bundle works by pointing your browser to `dist/index.html`.
@@ -33,5 +34,6 @@ There's no formal test suite yet. For now the process is roughly:
 - The pull request should include:
   - [ ] An update to the [in-depth.md](https://github.com/bmeurer/web-tooling-benchmark/blob/master/docs/in-depth.md) document. Add a new entry to that list for the new benchmark, which describes the tool and the concrete benchmark case.
   - [ ] Add a new file `src/foo-benchmark.js`, which includes the actual driver code for the benchmark (see the [`src/babylon-benchmark.js`](https://github.com/bmeurer/web-tooling-benchmark/blob/master/src/babylon-benchmark.js) for example).
+  - [ ] Add a new file `src/foo-benchmark.test.js`, which checks that the benchmark in `src/foo-benchmark.js` at least runs to completion.
   - [ ] `npm install --save-exact` any necessary dependencies, and be sure to include both the `package.json` and the `package-lock.json` changes in your pull request.
   - [ ] Put any assets used by the benchmark into the `resources` folder and hook them up with the virtual file system in `src/vfs.js`.
