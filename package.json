@@ -10,7 +10,7 @@
     "build": "webpack",
     "postinstall": "npm run build:uglify-es-bundled && npm run build:uglify-js-bundled && npm run build",
     "precommit": "lint-staged",
-    "test": "true"
+    "test": "jest"
   },
   "lint-staged": {
     "src/**/*.css": [
@@ -56,6 +56,7 @@
     "copy-webpack-plugin": "^4.1.1",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
+    "jest": "^21.2.1",
     "lint-staged": "^4.2.3",
     "node-libs-browser": "github:bmeurer/node-libs-browser#patch-1",
     "os-browserify": "^0.3.0",
