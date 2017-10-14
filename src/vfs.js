@@ -45,6 +45,10 @@ fs.writeFileSync(
   require("raw-loader!../resources/lodash.min-4.17.4.js.map")
 );
 fs.writeFileSync(
+  "resources/mootools-core-1.6.0.js",
+  require("raw-loader!../resources/mootools-core-1.6.0.js")
+);
+fs.writeFileSync(
   "resources/preact-8.2.5.js",
   require("raw-loader!../resources/preact-8.2.5.js")
 );

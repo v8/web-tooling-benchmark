@@ -86,6 +86,21 @@ popular.
 This benchmark runs the CoffeeScript compiler on the [`lexer.coffee`](https://github.com/bmeurer/web-tooling-benchmark/blob/resources/coffeescript-lexer-2.0.1.coffee)
 file from the CoffeeScript 2.0.1 distribution.
 
+## esprima
+
+[Esprima](http://esprima.org) is a high performance, standard-compliant ECMAScript parser
+written in ECMAScript, which can be used to perform [lexical analysis](https://en.wikipedia.org/wiki/Lexical_analysis)
+(tokenization) or [syntactic analysis](https://en.wikipedia.org/wiki/Parsing) (parsing)
+of an ECMAScript program. Esprima was initially used as the basis for several tools like
+ESLint and Babel, and is still in use by a lot of analysis tools.
+
+This benchmark runs both the tokenizer and the parser on a variety of common scripts,
+including
+- the [Backbone.js](http://backbonejs.org) 1.1.0 bundle,
+- the [jQuery](http://jquery.com) 3.2.1 distribution,
+- the [MooTools](https://mootools.net) 1.6.0 bundle,
+- and the [underscore](http://underscorejs.org/) 1.8.3 bundle.
+
 ## jshint
 
 [JSHint](http://jshint.com) is a program that flags suspicious usage in programs written
