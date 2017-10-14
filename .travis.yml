@@ -3,12 +3,9 @@ node_js:
     - "6"
     - "7"
     - "8"
-before_script:
-    - wget https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/jsshell-linux-x86_64.zip
-    - unzip jsshell-linux-x86_64.zip
 script:
     - npm test
-    - ./js dist/run.js
+    - node dist/run.js
 sudo: false
 branches:
     only:
