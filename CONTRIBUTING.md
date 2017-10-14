@@ -6,7 +6,7 @@ contributing, please read the
 
 ## Setup locally
 
-> The Web Tooling Benchmark doesn't officially support any version of [Node](https://www.nodejs.org) prior to Node 8.
+> The Web Tooling Benchmark doesn't officially support any version of [Node](https://www.nodejs.org) prior to Node 8, it currently works with Node 6 and Node 7, but that might change at any point in time.
 
 To start developing on the Web Tooling Benchmark you only need to install its dependencies:
 
