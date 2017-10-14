@@ -9,7 +9,8 @@
     "build:uglify-js-bundled": "./node_modules/uglify-js/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > ./build/uglify-js-bundled.js",
     "build": "webpack",
     "postinstall": "npm run build:uglify-es-bundled && npm run build:uglify-js-bundled && npm run build",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "true"
   },
   "lint-staged": {
     "src/**/*.css": [
