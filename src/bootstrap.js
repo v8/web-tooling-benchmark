@@ -20,6 +20,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 const gmean = require("compute-gmean");
+const package = require("../package.json");
 const suite = require("./suite");
 
 function displayStatusMessage(message) {
@@ -73,6 +74,11 @@ function reset() {
 
 function initialize() {
   reset();
+
+  document.title = `Web Tooling Benchmark v${package.version}`;
+
+  const versionDiv = document.getElementById("version");
+  versionDiv.innerHTML = `v${package.version}`;
 
   const statusDiv = document.getElementById("status");
   statusDiv.innerHTML = `<a href="javascript:void(0);">Start test</a>`;

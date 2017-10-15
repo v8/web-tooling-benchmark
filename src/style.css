@@ -112,6 +112,13 @@ div#result-summary .score .interval {
   font-weight: normal;
 }
 
+div#version {
+  margin-top: 60px;
+  font-size: 12px;
+  font-style: italic;
+  color: darkgrey;
+}
+
 .interval {
   opacity: 0.75;
 }
