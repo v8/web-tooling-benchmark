@@ -10,3 +10,14 @@ sudo: false
 branches:
     only:
     - master
+
+deploy:
+    local_dir: dist
+    email: benedikt.meurer@googlemail.com
+    name: Benedikt Meurer
+    project_name: web-tooling-benchmark
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+    on:
+        branch: master
