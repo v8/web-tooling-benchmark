@@ -27,12 +27,17 @@ const suite = require("./suite");
 console.log(`Running Web Tooling Benchmark ${packageJson.version}...`);
 console.log("--------------------------------------");
 
-suite.on("error", error => {
-  console.log("Encountered error, aborting benchmark...");
+suite.on("error", event => {
+  const benchmark = event.target;
+  const name = benchmark.name;
+  const error = benchmark.error;
+  console.log(`Encountered error running benchmark ${name}, aborting...`);
+  console.log(error.stack);
   suite.abort();
 });
 
 suite.on("cycle", event => {
+  if (suite.aborted) return;
   const benchmark = event.target;
   const name = benchmark.name;
   const hz = benchmark.hz;
@@ -47,6 +52,7 @@ suite.on("cycle", event => {
 });
 
 suite.on("complete", event => {
+  if (suite.aborted) return;
   const sample = [];
   suite.forEach(benchmark => {
     sample.push(...benchmark.stats.sample);

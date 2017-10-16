@@ -101,6 +101,7 @@ window.onload = initialize;
 
 suite.forEach(benchmark => {
   benchmark.on("start", event => {
+    if (suite.aborted) return;
     displayResultMessage(
       benchmark.name,
       "<em>Running...</em>",
@@ -109,12 +110,14 @@ suite.forEach(benchmark => {
     displayStatusMessage(`Running iteration 1 of ${benchmark.name}...`);
   });
   benchmark.on("cycle", event => {
+    if (suite.aborted) return;
     const iteration = benchmark.stats.sample.length + 1;
     displayStatusMessage(
       `Running iteration ${iteration} of ${benchmark.name}...`
     );
   });
   benchmark.on("complete", event => {
+    if (suite.aborted) return;
     displayResultMessage(
       benchmark.name,
       `${benchmark.hz.toFixed(
@@ -132,6 +135,7 @@ suite.forEach(benchmark => {
 });
 
 suite.on("complete", event => {
+  if (suite.aborted) return;
   const sample = [];
   suite.forEach(benchmark => {
     sample.push(...benchmark.stats.sample);
@@ -147,4 +151,13 @@ suite.on("complete", event => {
   resultSummaryDiv.innerHTML = `<label>Runs/Sec</label><br><span class="score">${hz.toFixed(
     2
   )}</span>`;
+});
+
+suite.on("error", event => {
+  const benchmark = event.target;
+  const error = benchmark.error;
+  const name = benchmark.name;
+  document.body.innerHTML = `<h1>ERROR</h1><p>Encountered errors during execution of ${name} test. Refusing to run a partial benchmark suite.</p><pre>${error.stack}</pre>`;
+  console.error(error);
+  suite.abort();
 });
