@@ -29,14 +29,13 @@ Syntax Tree) walker on several popular inputs, including
 ## babel
 
 [Babel](https://github.com/babel/babel) is a transpiler that compiles modern JavaScipt
-(i.e. ES2015 and later) to an older JavaScript dialect (i.e. ES3 or ES5) that is understood
-by a broad set of browsers. It's probably the most popular transpiler at this point in time
-and used in the vast majority of web projects nowadays.
+(i.e. ES2015 and later) to an older JavaScript dialect (i.e. ES3 or ES5) that is understood by a broad set of browsers. It's probably the most popular transpiler at
+this point in time and used in the vast majority of web projects nowadays.
 
 This benchmark runs the Babel transformation logic using the `es2015` preset on a 196KiB
 ES2015 module containing the untranspiled [Vue](https://github.com/vuejs/vue) bundle.
 Note that this explicitly excludes the [Babylon](https://github.com/babel/babylon) parser
-and only measures the throughput on the actual transformations. The parser is tested
+and only measures the throughput of the actual transformations. The parser is tested
 separately by the `babylon` benchmark below.
 
 ## babylon
@@ -123,9 +122,10 @@ including
 in JavaScript. At some point it was very popular, but nowadays it seems that many projects
 have switch or are switching to [ESLint](https://eslint.org).
 
-This benchmark runs JSHint on the [lodash](https://lodash.com) 4.17.4 bundle, the
-[Preact](http://preactjs.com) 8.2.5 bundle, and the [underscore](http://underscorejs.org)
-1.8.3 distribution.
+This benchmark runs JSHint on
+- the [lodash](https://lodash.com) 4.17.4 bundle,
+- the [Preact](http://preactjs.com) 8.2.5 bundle,
+- and the [underscore](http://underscorejs.org) 1.8.3 distribution.
 
 ## lebab
 
@@ -140,9 +140,9 @@ Prepack replaces the global code of a JavaScript bundle with equivalent code tha
 is a simple sequence of assignments. This gets rid of most intermediate computations
 and object allocations. It currently focuses on React Native use cases.
 
-This benchmark runs prepack on both the [Preact](https://github.com/developit/preact)
-8.2.5 bundle (unminified) as well as the [Redux](https://github.com/reactjs/redux) 3.7.2 bundle
-(minified).
+This benchmark runs prepack on both
+- the [Preact](https://github.com/developit/preact) 8.2.5 bundle (unminified) as well as
+- the [Redux](https://github.com/reactjs/redux) 3.7.2 bundle (minified).
 
 ## prettier
 
