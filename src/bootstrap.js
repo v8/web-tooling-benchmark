@@ -136,11 +136,7 @@ suite.forEach(benchmark => {
 
 suite.on("complete", event => {
   if (suite.aborted) return;
-  const sample = [];
-  suite.forEach(benchmark => {
-    sample.push(...benchmark.stats.sample);
-  });
-  const hz = 1 / gmean(sample);
+  const hz = gmean(suite.map(benchmark => benchmark.hz));
   displayResultMessage("geomean", `${hz.toFixed(2)}`, "highlighted-result");
 
   const statusDiv = document.getElementById("status");

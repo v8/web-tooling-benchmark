@@ -53,11 +53,7 @@ suite.on("cycle", event => {
 
 suite.on("complete", event => {
   if (suite.aborted) return;
-  const sample = [];
-  suite.forEach(benchmark => {
-    sample.push(...benchmark.stats.sample);
-  });
-  const hz = 1 / gmean(sample);
+  const hz = gmean(suite.map(benchmark => benchmark.hz));
   console.log("--------------------------------------");
   console.log(`Geometric mean: ${align(hz.toFixed(2), 5, "right")} runs/sec`);
 });
