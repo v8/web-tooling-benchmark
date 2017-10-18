@@ -129,8 +129,11 @@ This benchmark runs JSHint on
 
 ## lebab
 
-A test to stress the [Lebab](https://github.com/lebab/lebab)
-ES5 to ES6/ES7 transpiler, modernizing the preact bundle.
+[Lebab](https://github.com/lebab/lebab) transpiles your ES5 code to ES6/ES7, thus
+performing the opposite of what [Babel](https://github.com/babel/babel) does.
+
+This benchmark runs the Lebal ES5 to ES6/ES7 transpiler on the
+[Preact](http://preactjs.com) 8.2.5 bundle.
 
 ## prepack
 
@@ -146,26 +149,44 @@ This benchmark runs prepack on both
 
 ## prettier
 
-A test to stress the [Prettier](https://github.com/prettier/prettier)
-code formatter with various `.js` and `.jsx` inputs.
+[Prettier](https://github.com/prettier/prettier) is an opinionated code formatter
+which removes all the original styling and ensures that all outputted code conforms
+to a consistent style. It is often used in web projects today to automatically format
+JavaScript, HTML, CSS and other files.
+
+This benchmark runs prettier on different inputs, including
+- the [lodash](https://lodash.com) 4.17.4 bundle,
+- the [Preact](http://preactjs.com) 8.2.5 bundle, and
+- the JSX files from the React [todomvc](https://github.com/tastejs/todomvc) example app.
 
 ## source-map
 
-A test to stress the [source-map](https://github.com/mozilla/source-map)
-tool on both parsing and serializing source maps.
+[Source Map](https://github.com/mozilla/source-map) is a library developed by Mozilla
+to generate and consume source maps, which in turn are used by browsers to display
+proper JavaScript when debugging a minified application.
+
+This benchmark stresses the source-map tool on both parsing and serializing a
+variety of different source maps, including the [Preact](http://preactjs.com)
+8.2.5 source map.
 
 ## typescript
 
-A test to stress the [TypeScript](https://github.com/Microsoft/TypeScript)
-compiler on the [`typescript-angular`](https://github.com/tastejs/todomvc/tree/master/examples/typescript-angular)
+[TypeScript](https://github.com/Microsoft/TypeScript) is a language for
+application-scale JavaScript. It adds optional types, classes, and modules
+to JavaScript, and compiles to readable, standards-based JavaScript.
+
+This benchmark stresses the TypeScript compiler by running it on the
+[`typescript-angular`](https://github.com/tastejs/todomvc/tree/master/examples/typescript-angular)
 example from [todomvc](https://github.com/tastejs/todomvc).
 
 ## uglify-js
 
-A test to stress the [UglifyJS3](https://github.com/mishoo/UglifyJS2)
-minifier, running on the (concatenated) JavaScript source for
-the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer)
-2.0 benchmark.
+[UglifyJS](https://github.com/mishoo/UglifyJS2) is a JavaScript parser, minifier,
+compressor and beautifier toolkit, which is commonly used to minimize JavaScript
+bundles.
+
+This benchmark runs the UglifyJS minifier on the (concatenated) JavaScript source for
+the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer) 2.0 benchmark.
 
 ## uglify-es
 
