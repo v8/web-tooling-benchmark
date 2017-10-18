@@ -7,9 +7,6 @@ JavaScript related workloads required by Web Developers nowadays.
 It's the explicit goal not to measure I/O or other non-JavaScript
 related tasks.
 
-A recent version of the benchmark is available at
-[benediktmeurer.de/web-tooling-benchmark](http://benediktmeurer.de/web-tooling-benchmark/).
-
 See the [in-depth
 analysis](https://github.com/bmeurer/web-tooling-benchmark/blob/master/docs/in-depth.md)
 for a detailed description of the tests included in this benchmark suite.
