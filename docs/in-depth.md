@@ -82,7 +82,7 @@ itself.
 the good parts of JavaScript in a simple way. At some point CoffeeScript was very
 popular.
 
-This benchmark runs the CoffeeScript compiler on the [`lexer.coffee`](https://github.com/bmeurer/web-tooling-benchmark/blob/resources/coffeescript-lexer-2.0.1.coffee)
+This benchmark runs the CoffeeScript compiler on the [`lexer.coffee`](https://github.com/v8/web-tooling-benchmark/blob/third_party/coffeescript-lexer-2.0.1.coffee)
 file from the CoffeeScript 2.0.1 distribution.
 
 ## espree

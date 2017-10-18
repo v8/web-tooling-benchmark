@@ -2,7 +2,7 @@
   "name": "web-tooling-benchmark",
   "description": "JavaScript Benchmark for common Web Developer workloads",
   "version": "0.2.0",
-  "repository": "https://github.com/bmeurer/web-tooling-benchmark",
+  "repository": "https://github.com/v8/web-tooling-benchmark",
   "main": "src/cli.js",
   "scripts": {
     "build:uglify-es-bundled": "./node_modules/uglify-es/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > ./build/uglify-es-bundled.js",
@@ -31,7 +31,7 @@
     "email": "bmeurer@chromium.org",
     "url": "http://benediktmeurer.de"
   },
-  "license": "MIT",
+  "license": "BSD",
   "dependencies": {
     "acorn": "5.1.2",
     "babel-standalone": "7.0.0-beta.2",

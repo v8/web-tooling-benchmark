@@ -1,6 +1,6 @@
 # Web Tooling Benchmark
 
-[![Build Status](https://travis-ci.org/bmeurer/web-tooling-benchmark.svg?branch=master)](https://travis-ci.org/bmeurer/web-tooling-benchmark) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Build Status](https://travis-ci.org/v8/web-tooling-benchmark.svg?branch=master)](https://travis-ci.org/v8/web-tooling-benchmark) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 This is work-in-progress benchmark suite that tries to measure the
 JavaScript related workloads required by Web Developers nowadays.
@@ -8,7 +8,7 @@ It's the explicit goal not to measure I/O or other non-JavaScript
 related tasks.
 
 See the [in-depth
-analysis](https://github.com/bmeurer/web-tooling-benchmark/blob/master/docs/in-depth.md)
+analysis](https://github.com/v8/web-tooling-benchmark/blob/master/docs/in-depth.md)
 for a detailed description of the tests included in this benchmark suite.
 
 ## Building
