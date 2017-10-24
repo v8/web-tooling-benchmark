@@ -46,7 +46,7 @@ function reset() {
       } else {
         const benchmark = benchmarks[index];
         text += `<td class="benchmark-name">`;
-        text += `<a href="https://github.com/v8/web-tooling-benchmark/blob/master/docs/in-depth.md##${benchmark.name}" target="_blank">${benchmark.name}</a></td>`;
+        text += `<a href="https://github.com/v8/web-tooling-benchmark/blob/master/docs/in-depth.md#${benchmark.name}" target="_blank">${benchmark.name}</a></td>`;
         text += `<td class="result" id="results-cell-${benchmark.name}">&mdash;</td>`;
       }
     }
