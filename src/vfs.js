@@ -79,5 +79,18 @@ fs.writeFileSync(
   "third_party/vue.runtime.esm-nobuble-2.4.4.js",
   require("raw-loader!../third_party/vue.runtime.esm-nobuble-2.4.4.js")
 );
+fs.mkdirpSync("/src/fixtures/webpack");
+fs.writeFileSync(
+  "/src/fixtures/webpack/a.js",
+  require("raw-loader!./fixtures/webpack/a.js")
+);
+fs.writeFileSync(
+  "/src/fixtures/webpack/b.js",
+  require("raw-loader!./fixtures/webpack/b.js")
+);
+fs.writeFileSync(
+  "/src/fixtures/webpack/c.js",
+  require("raw-loader!./fixtures/webpack/c.js")
+);
 
 module.exports = fs;

@@ -19,7 +19,10 @@ module.exports = [
     resolve: {
       alias: {
         fs: require.resolve("./src/vfs"),
-        module: require.resolve("./src/mocks/dummy")
+        "graceful-fs": require.resolve("./src/vfs"),
+        module: require.resolve("./src/mocks/dummy"),
+        chokidar: require.resolve("./src/mocks/chokidar"),
+        "uglify-js": require.resolve("./src/mocks/dummy")
       }
     },
     plugins: [
@@ -46,7 +49,10 @@ module.exports = [
       alias: {
         define: require.resolve("./src/mocks/dummy"),
         fs: require.resolve("./src/vfs"),
-        module: require.resolve("./src/mocks/dummy")
+        "graceful-fs": require.resolve("./src/vfs"),
+        module: require.resolve("./src/mocks/dummy"),
+        chokidar: require.resolve("./src/mocks/chokidar"),
+        "uglify-js": require.resolve("./src/mocks/dummy")
       }
     },
     plugins: [
