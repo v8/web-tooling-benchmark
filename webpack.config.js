@@ -22,10 +22,26 @@ module.exports = [
         "graceful-fs": require.resolve("./src/vfs"),
         module: require.resolve("./src/mocks/dummy"),
         chokidar: require.resolve("./src/mocks/chokidar"),
-        "uglify-js": require.resolve("./src/mocks/dummy")
+        "uglify-js": require.resolve("./src/mocks/dummy"),
+        // These modules are used by virtualfs to fake async fs calls
+        "core-js/library/fn/set-immediate": require.resolve(
+          "./src/mocks/set-immediate"
+        ),
+        "core-js/library/fn/clear-immediate": require.resolve(
+          "./src/mocks/clear-immediate"
+        )
       }
     },
+    node: {
+      setImmediate: false, // this disables also clearImmediate
+      process: false
+    },
     plugins: [
+      new webpack.ProvidePlugin({
+        setImmediate: require.resolve("./src/mocks/set-immediate"),
+        clearImmediate: require.resolve("./src/mocks/clear-immediate"),
+        process: require.resolve("./src/mocks/process")
+      }),
       new webpack.BannerPlugin({
         banner:
           "// Required for JavaScript engine shells.\n" +
@@ -52,10 +68,25 @@ module.exports = [
         "graceful-fs": require.resolve("./src/vfs"),
         module: require.resolve("./src/mocks/dummy"),
         chokidar: require.resolve("./src/mocks/chokidar"),
-        "uglify-js": require.resolve("./src/mocks/dummy")
+        "uglify-js": require.resolve("./src/mocks/dummy"),
+        "core-js/library/fn/set-immediate": require.resolve(
+          "./src/mocks/set-immediate"
+        ),
+        "core-js/library/fn/clear-immediate": require.resolve(
+          "./src/mocks/clear-immediate"
+        )
       }
     },
+    node: {
+      setImmediate: false,
+      process: false
+    },
     plugins: [
+      new webpack.ProvidePlugin({
+        setImmediate: require.resolve("./src/mocks/set-immediate"),
+        clearImmediate: require.resolve("./src/mocks/clear-immediate"),
+        process: require.resolve("./src/mocks/process")
+      }),
       new CopyWebpackPlugin([{ from: "style.css" }, { from: "Logo.png" }]),
       new webpack.BannerPlugin({
         banner:

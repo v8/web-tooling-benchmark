@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 const webpack = require("webpack");
+const eventLoop = require("./mocks/event-loop");
 
 const payloads = [
   {
@@ -22,16 +23,27 @@ const payloads = [
 
 module.exports = {
   name: "webpack",
-  defer: true,
-  fn(deferred) {
-    return Promise.all(
-      payloads.map(
-        config =>
-          new Promise((resolve, reject) => {
-            const compiler = webpack(config);
-            compiler.run((err, stats) => void (err ? reject(err) : resolve()));
-          })
-      )
-    ).then(() => deferred.resolve());
+  fn() {
+    payloads.forEach(config => {
+      let finished = false;
+
+      eventLoop.schedule(() => {
+        const compiler = webpack(config);
+        compiler.run((err, stats) => {
+          if (err) {
+            throw err;
+          }
+          if (stats.hasErrors()) {
+            throw stats.compilation.errors[0];
+          }
+          finished = true;
+        });
+      });
+      eventLoop.run();
+
+      if (finished !== true) {
+        throw new Error("Webpack did not finish synchronously");
+      }
+    });
   }
 };

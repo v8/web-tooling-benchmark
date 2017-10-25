@@ -19,8 +19,7 @@ beforeAll(
     new Promise((resolve, reject) => {
       const baseConfig = webpackConfig[0];
       const config = Object.assign({}, baseConfig, {
-        entry: require.resolve("./webpack-benchmark.js"),
-        bail: true
+        entry: require.resolve("./webpack-benchmark.js")
       });
       config.output = Object.assign({}, baseConfig.output, {
         libraryTarget: "commonjs2",
@@ -39,7 +38,4 @@ beforeAll(
     })
 );
 
-it("webpack runs to completion", () =>
-  new Promise(resolve => {
-    webpackBenchmark.fn({ resolve });
-  }));
+it("webpack runs to completion", () => void webpackBenchmark.fn());
