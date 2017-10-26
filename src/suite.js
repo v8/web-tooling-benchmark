@@ -22,5 +22,6 @@ suite.add(require("./source-map-benchmark"));
 suite.add(require("./typescript-benchmark"));
 suite.add(require("./uglify-js-benchmark"));
 suite.add(require("./uglify-es-benchmark"));
+suite.add(require("./webpack-benchmark"));
 
 module.exports = suite;
