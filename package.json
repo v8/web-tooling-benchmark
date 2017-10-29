@@ -31,7 +31,7 @@
     "email": "bmeurer@chromium.org",
     "url": "http://benediktmeurer.de"
   },
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "acorn": "5.1.2",
     "babel-standalone": "7.0.0-beta.2",
