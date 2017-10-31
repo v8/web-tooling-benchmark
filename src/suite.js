@@ -4,23 +4,37 @@
 
 const Benchmark = require("benchmark");
 
+// We need to run deterministically, so we set 'maxTime' to 0, which
+// disables the variable iteration count feature of benchmark.js,
+// and specify 'minSamples' as 20 to have it collect exactly 20
+// samples. We leave the 'initCount' to the default of 1. See
+// https://github.com/v8/web-tooling-benchmark/issues/6 for details.
+const defaultOptions = {
+  maxTime: 0,
+  minSamples: 20
+};
+
 const suite = new Benchmark.Suite();
 
-suite.add(require("./acorn-benchmark"));
-suite.add(require("./babel-benchmark"));
-suite.add(require("./babylon-benchmark"));
-suite.add(require("./buble-benchmark"));
-suite.add(require("./chai-benchmark"));
-suite.add(require("./coffeescript-benchmark"));
-suite.add(require("./espree-benchmark"));
-suite.add(require("./esprima-benchmark"));
-suite.add(require("./jshint-benchmark"));
-suite.add(require("./lebab-benchmark"));
-suite.add(require("./prepack-benchmark"));
-suite.add(require("./prettier-benchmark"));
-suite.add(require("./source-map-benchmark"));
-suite.add(require("./typescript-benchmark"));
-suite.add(require("./uglify-js-benchmark"));
-suite.add(require("./uglify-es-benchmark"));
+[
+  require("./acorn-benchmark"),
+  require("./babel-benchmark"),
+  require("./babylon-benchmark"),
+  require("./buble-benchmark"),
+  require("./chai-benchmark"),
+  require("./coffeescript-benchmark"),
+  require("./espree-benchmark"),
+  require("./esprima-benchmark"),
+  require("./jshint-benchmark"),
+  require("./lebab-benchmark"),
+  require("./prepack-benchmark"),
+  require("./prettier-benchmark"),
+  require("./source-map-benchmark"),
+  require("./typescript-benchmark"),
+  require("./uglify-es-benchmark"),
+  require("./uglify-js-benchmark")
+].forEach(options => {
+  suite.add(Object.assign({}, options, defaultOptions));
+});
 
 module.exports = suite;
