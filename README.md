@@ -14,6 +14,8 @@ See the [in-depth
 analysis](https://github.com/v8/web-tooling-benchmark/blob/master/docs/in-depth.md)
 for a detailed description of the tests included in this benchmark suite.
 
+The latest browser version of the benchmark is available at https://v8.github.io/web-tooling-benchmark.
+
 ## Building
 
 > This was tested with Node 6, Node 7 and Node 8.
