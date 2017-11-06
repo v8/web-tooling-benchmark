@@ -12,7 +12,7 @@ module.exports = [
     context: path.resolve("src"),
     entry: "./cli.js",
     output: {
-      filename: "run.js",
+      filename: "cli.js",
       path: path.resolve("dist")
     },
     bail: true,
@@ -38,7 +38,7 @@ module.exports = [
     context: path.resolve("src"),
     entry: "./bootstrap.js",
     output: {
-      filename: "bundle.js",
+      filename: "browser.js",
       path: path.resolve("dist")
     },
     bail: true,
