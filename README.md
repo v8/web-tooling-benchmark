@@ -14,26 +14,26 @@ See the [in-depth
 analysis](https://github.com/v8/web-tooling-benchmark/blob/master/docs/in-depth.md)
 for a detailed description of the tests included in this benchmark suite.
 
-The latest browser version of the benchmark is available at https://v8.github.io/web-tooling-benchmark.
+The latest browser version of the benchmark is available at <https://v8.github.io/web-tooling-benchmark/>.
 
 ## Building
 
 > This was tested with Node 6, Node 7 and Node 8.
 
-Building the benchmark suite is just a matter of running
+To build the benchmark suite, run
 
 ```
 $ npm install
 ```
 
-assuming that you have a working [Node](https://nodejs.org) installation. Once
-the command is done, it produces a bundled version that is suitable to run in
-JS shells (i.e. `d8`, `jsc` or `jsshell`) in `dist/run.js` and another bundle
-in `dist/bundle.js` that is used by the browser version in `dist/index.html`.
+assuming that you have a working [Node.js](https://nodejs.org) installation.
+The command produces a bundled version that is suitable to run in JS shells
+(i.e. `d8`, `jsc`, or `jsshell`) in `dist/run.js` and another bundle in
+`dist/bundle.js` that is used by the browser version in `dist/index.html`.
 
 ## Running
 
-You can either run the benchmark suite directly via [Node](https://nodejs.org),
+You can either run the benchmark suite directly via [Node](https://nodejs.org/),
 i.e. like this:
 
 ```
