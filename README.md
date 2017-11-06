@@ -26,10 +26,10 @@ To build the benchmark suite, run
 $ npm install
 ```
 
-assuming that you have a working [Node.js](https://nodejs.org) installation.
-The command produces a bundled version that is suitable to run in JS shells
-(i.e. `d8`, `jsc`, or `jsshell`) in `dist/run.js` and another bundle in
-`dist/bundle.js` that is used by the browser version in `dist/index.html`.
+assuming that you have a working [Node.js](https://nodejs.org) installation. Once
+the command is done, it produces a bundled version that is suitable to run in
+JS shells (i.e. `d8`, `jsc` or `jsshell`) in `dist/cli.js` and another bundle
+in `dist/browser.js` that is used by the browser version in `dist/index.html`.
 
 ## Running
 

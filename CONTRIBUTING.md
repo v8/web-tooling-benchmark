@@ -6,7 +6,7 @@ contributing, please read the
 
 ## Setup locally
 
-> The Web Tooling Benchmark doesn't officially support any version of [Node](https://www.nodejs.org) prior to Node 8, it currently works with Node 6 and Node 7, but that might change at any point in time.
+> The Web Tooling Benchmark doesn't officially support any version of [Node](https://www.nodejs.org/) prior to Node 8, it currently works with Node 6 and Node 7, but that might change at any point in time.
 
 To start developing on the Web Tooling Benchmark you only need to install its dependencies:
 
@@ -22,8 +22,8 @@ There's no formal test suite yet. For now the process is roughly:
 
 - [ ] Check that `npm install` passes.
 - [ ] Check that `npm test` passes.
-- [ ] Check that the suite runs in `node`, via `node src/cli`.
-- [ ] Check that the suite runs in `d8` via `/path/to/d8 dist/run.js`.
+- [ ] Check that the suite runs in `node`, via `node src/cli.js`.
+- [ ] Check that the suite runs in `d8` via `/path/to/d8 dist/cli.js`.
 - [ ] Check that the browser bundle works by pointing your browser to `dist/index.html`.
 
 ## Creating a new benchmark
