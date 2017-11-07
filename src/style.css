@@ -88,7 +88,7 @@ div#result-summary .score {
   color: rgb(19, 156, 7);
 }
 
-div#result-summary .score .interval {
+div#result-summary .score {
   display: block;
   font-size: 18px;
   line-height: 18px;
@@ -100,10 +100,6 @@ div#version {
   font-size: 12px;
   font-style: italic;
   color: darkgrey;
-}
-
-.interval {
-  opacity: 0.75;
 }
 
 a:link,

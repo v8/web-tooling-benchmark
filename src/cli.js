@@ -26,11 +26,7 @@ suite.on("cycle", event => {
   const hz = benchmark.hz;
   const stats = benchmark.stats;
   console.log(
-    `${align(name, 14, "right")}: ${align(
-      hz.toFixed(2),
-      5,
-      "right"
-    )} runs/sec ${align(`\xb1${stats.rme.toFixed(2)}%`, 7, "right")}`
+    `${align(name, 14, "right")}: ${align(hz.toFixed(2), 5, "right")} runs/sec`
   );
 });
 
