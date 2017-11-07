@@ -103,11 +103,7 @@ suite.forEach(benchmark => {
     if (suite.aborted) return;
     displayResultMessage(
       benchmark.name,
-      `${benchmark.hz.toFixed(
-        2
-      )} <span class="interval">&plusmn; ${benchmark.stats.rme.toFixed(
-        2
-      )}%</span>`,
+      `${benchmark.hz.toFixed(2)}`,
       "result"
     );
     const iterations = benchmark.stats.sample.length;
