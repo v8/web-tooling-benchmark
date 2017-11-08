@@ -37,29 +37,29 @@ You can either run the benchmark suite directly via [Node](https://nodejs.org/),
 i.e. like this:
 
 ```
-$ node src/cli
-Running Web Tooling Benchmark 0.2.0...
+$ node dist/cli.js
+Running Web Tooling Benchmark 0.3.1...
 --------------------------------------
-         acorn: 10.16 runs/sec ±10.38%
-         babel:  8.78 runs/sec  ±2.89%
-       babylon:  9.31 runs/sec  ±8.50%
-         buble:  7.91 runs/sec  ±9.95%
-          chai: 15.95 runs/sec  ±2.50%
-  coffeescript:  7.06 runs/sec ±11.46%
-        espree:  6.75 runs/sec ±14.73%
-       esprima:  6.49 runs/sec ±13.16%
-        jshint:  9.85 runs/sec ±10.13%
-         lebab: 12.20 runs/sec  ±7.63%
-       prepack:  8.88 runs/sec  ±9.47%
-      prettier: 11.01 runs/sec  ±8.09%
-    source-map: 19.43 runs/sec  ±1.31%
-    typescript: 12.71 runs/sec  ±8.55%
-     uglify-js:  9.49 runs/sec  ±4.89%
-     uglify-es: 22.84 runs/sec  ±4.86%
+         acorn:  9.19 runs/sec
+         babel:  6.74 runs/sec
+       babylon:  8.72 runs/sec
+         buble:  7.67 runs/sec
+          chai: 13.28 runs/sec
+  coffeescript:  6.80 runs/sec
+        espree:  5.45 runs/sec
+       esprima:  7.67 runs/sec
+        jshint:  8.41 runs/sec
+         lebab:  8.88 runs/sec
+       prepack:  8.81 runs/sec
+      prettier: 11.21 runs/sec
+    source-map: 17.22 runs/sec
+    typescript: 10.70 runs/sec
+     uglify-es: 20.16 runs/sec
+     uglify-js:  8.22 runs/sec
 --------------------------------------
-Geometric mean: 10.45 runs/sec
+Geometric mean:  9.37 runs/sec
 ```
 
 Or you open a web browser and point it to `dist/index.html`, or you can use one
 of the engine JS shells (`d8`, `jsc`, `ch` or `jsshell`) to run the special bundle
-in `dist/run.js`.
+in `dist/cli.js`.
