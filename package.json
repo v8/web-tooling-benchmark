@@ -33,9 +33,9 @@
   },
   "license": "BSD-3-Clause",
   "dependencies": {
+    "@babel/standalone": "7.0.0-beta.32",
     "acorn": "5.1.2",
-    "babel-standalone": "7.0.0-beta.3",
-    "babylon": "7.0.0-beta.30",
+    "babylon": "7.0.0-beta.32",
     "benchmark": "^2.1.4",
     "buble": "0.16.0",
     "chai": "4.1.2",
