@@ -61,5 +61,14 @@ Geometric mean:  9.37 runs/sec
 ```
 
 Or you open a web browser and point it to `dist/index.html`, or you can use one
-of the engine JS shells (`d8`, `jsc`, `ch` or `jsshell`) to run the special bundle
-in `dist/cli.js`.
+of the engine JS shells to run the special bundle in `dist/cli.js`. The easiest
+way to install recent versions of the supported JS engine shells is to run
+[`jsvu`](https://github.com/GoogleChromeLabs/jsvu). Afterwards, you can run the
+benchmark as follows:
+
+```sh
+$ chakra dist/cli.js
+$ javascriptcore dist/cli.js
+$ spidermonkey dist/cli.js
+$ v8 dist/cli.js
+```
