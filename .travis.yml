@@ -1,23 +1,33 @@
 language: node_js
+os:
+  - osx
+  - linux
 node_js:
-    - "6"
-    - "7"
-    - "8"
+  - "6"
+  - "8"
+  - "9"
 script:
-    - npm test
-    - node dist/cli.js
-sudo: false
+  - npm test
+  - node dist/cli.js
+  - |
+    if [ "${TRAVIS_NODE_VERSION}" = "9" ]; then
+      jsvu --os=linux64 --engines=all
+      ~/.jsvu/chakra dist/cli.js
+      # ~/.jsvu/javascriptcore dist/cli.js
+      ~/.jsvu/spidermonkey dist/cli.js
+      ~/.jsvu/v8 dist/cli.js
+    fi
 branches:
-    only:
+  only:
     - master
 
 deploy:
-    local_dir: dist
-    email: bmeurer@chromium.org
-    name: Benedikt Meurer
-    project_name: web-tooling-benchmark
-    provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-    on:
-        branch: master
+  local_dir: dist
+  email: bmeurer@chromium.org
+  name: Benedikt Meurer
+  project_name: web-tooling-benchmark
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  on:
+    branch: master
