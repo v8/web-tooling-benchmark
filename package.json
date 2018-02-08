@@ -34,6 +34,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@babel/standalone": "7.0.0-beta.32",
+    "@std/esm": "^0.21.1",
     "acorn": "5.2.1",
     "babylon": "7.0.0-beta.32",
     "benchmark": "^2.1.4",
@@ -45,6 +46,7 @@
     "esprima": "4.0.0",
     "jshint": "2.9.5",
     "lebab": "2.7.7",
+    "lodash-es": "^4.17.5",
     "prepack": "0.2.11",
     "prettier": "1.8.2",
     "source-map": "0.6.1",

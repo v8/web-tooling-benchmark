@@ -30,11 +30,14 @@ const suite = new Benchmark.Suite();
   require("./prepack-benchmark"),
   require("./prettier-benchmark"),
   require("./source-map-benchmark"),
+  require("./std-esm-benchmark"),
   require("./typescript-benchmark"),
   require("./uglify-es-benchmark"),
   require("./uglify-js-benchmark")
 ].forEach(options => {
-  suite.add(Object.assign({}, options, defaultOptions));
+  if (options.fn) {
+    suite.add(Object.assign({}, options, defaultOptions));
+  }
 });
 
 module.exports = suite;

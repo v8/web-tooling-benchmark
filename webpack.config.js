@@ -27,6 +27,9 @@ module.exports = [
         banner:
           "// Required for JavaScript engine shells.\n" +
           "var global = this;\n" +
+          "if (typeof module !== 'undefined') {\n" +
+          "  __non_webpack_module__ = module;\n" +
+          "}\n" +
           "if (typeof console === 'undefined') {\n" +
           "  console = {log: print};\n" +
           "}",
