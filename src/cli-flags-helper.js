@@ -17,7 +17,7 @@ const targetList = new Set([
   "uglify-js"
 ]);
 
-function getOnlyFlag(argv) {
+function getOnlyFlag() {
   const onlyIndex = process.argv.indexOf("--only");
   if (onlyIndex != -1) {
     return process.argv[onlyIndex + 1];
