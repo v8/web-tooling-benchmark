@@ -6,34 +6,10 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
-
-const targetList = [
-  "acorn",
-  "babel",
-  "babylon",
-  "buble",
-  "chai",
-  "coffeescript",
-  "espree",
-  "esprima",
-  "jshint",
-  "lebab",
-  "prepack",
-  "prettier",
-  "source-map",
-  "typescript",
-  "uglify-es",
-  "uglify-js"
-];
+const targetList = require("./src/cli-flags-helper").targetList;
 
 function getTarget(env) {
-  return (
-    env &&
-    env.only &&
-    targetList.find(elem => {
-      return elem == env.only;
-    })
-  );
+  return env && targetList.has(env.only) && env.only;
 }
 
 module.exports = env => [

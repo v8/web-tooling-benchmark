@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 const Benchmark = require("benchmark");
+const getTarget = require("./cli-flags-helper").getTarget;
 
 // We need to run deterministically, so we set 'maxTime' to 0, which
 // disables the variable iteration count feature of benchmark.js,
@@ -14,34 +15,12 @@ const defaultOptions = {
   minSamples: 20
 };
 
-const targetList = [
-  "acorn",
-  "babel",
-  "babylon",
-  "buble",
-  "chai",
-  "coffeescript",
-  "espree",
-  "esprima",
-  "jshint",
-  "lebab",
-  "prepack",
-  "prettier",
-  "source-map",
-  "typescript",
-  "uglify-es",
-  "uglify-js"
-];
-
 const suite = new Benchmark.Suite();
-const targetItems = ONLY ? [ONLY] : null;
 
-const requireList = (targetItems || targetList).map(val => {
-  return require(`./${val}-benchmark`);
-});
-
-requireList.forEach(options => {
-  suite.add(Object.assign({}, options, defaultOptions));
+getTarget().forEach(target => {
+  suite.add(
+    Object.assign({}, require(`./${target}-benchmark`), defaultOptions)
+  );
 });
 
 module.exports = suite;
