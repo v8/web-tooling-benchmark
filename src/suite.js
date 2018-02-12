@@ -14,26 +14,33 @@ const defaultOptions = {
   minSamples: 20
 };
 
-const suite = new Benchmark.Suite();
+const targetList = [
+  "acorn",
+  "babel",
+  "babylon",
+  "buble",
+  "chai",
+  "coffeescript",
+  "espree",
+  "esprima",
+  "jshint",
+  "lebab",
+  "prepack",
+  "prettier",
+  "source-map",
+  "typescript",
+  "uglify-es",
+  "uglify-js"
+];
 
-[
-  require("./acorn-benchmark"),
-  require("./babel-benchmark"),
-  require("./babylon-benchmark"),
-  require("./buble-benchmark"),
-  require("./chai-benchmark"),
-  require("./coffeescript-benchmark"),
-  require("./espree-benchmark"),
-  require("./esprima-benchmark"),
-  require("./jshint-benchmark"),
-  require("./lebab-benchmark"),
-  require("./prepack-benchmark"),
-  require("./prettier-benchmark"),
-  require("./source-map-benchmark"),
-  require("./typescript-benchmark"),
-  require("./uglify-es-benchmark"),
-  require("./uglify-js-benchmark")
-].forEach(options => {
+const suite = new Benchmark.Suite();
+const targetItems = ONLY ? [ONLY] : null;
+
+const requireList = (targetItems || targetList).map(val => {
+  return require(`./${val}-benchmark`);
+});
+
+requireList.forEach(options => {
   suite.add(Object.assign({}, options, defaultOptions));
 });
 

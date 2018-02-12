@@ -7,7 +7,36 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 
-module.exports = [
+const targetList = [
+  "acorn",
+  "babel",
+  "babylon",
+  "buble",
+  "chai",
+  "coffeescript",
+  "espree",
+  "esprima",
+  "jshint",
+  "lebab",
+  "prepack",
+  "prettier",
+  "source-map",
+  "typescript",
+  "uglify-es",
+  "uglify-js"
+];
+
+function getTarget(env) {
+  return (
+    env &&
+    env.only &&
+    targetList.find(elem => {
+      return elem == env.only;
+    })
+  );
+}
+
+module.exports = env => [
   {
     context: path.resolve("src"),
     entry: "./cli.js",
@@ -31,6 +60,9 @@ module.exports = [
           "  console = {log: print};\n" +
           "}",
         raw: true
+      }),
+      new webpack.DefinePlugin({
+        ONLY: JSON.stringify(getTarget(env))
       })
     ]
   },
@@ -61,6 +93,9 @@ module.exports = [
       new HtmlWebpackPlugin({
         template: "./index.html",
         inject: "head"
+      }),
+      new webpack.DefinePlugin({
+        ONLY: JSON.stringify(getTarget(env))
       })
     ]
   }
