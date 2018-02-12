@@ -31,6 +31,13 @@ the command is done, it produces a bundled version that is suitable to run in
 JS shells (i.e. `d8`, `jsc` or `jsshell`) in `dist/cli.js` and another bundle
 in `dist/browser.js` that is used by the browser version in `dist/index.html`.
 
+To build an individual benchmark rather than the entire suite, pass the `--env.only`
+CLI flag:
+
+```
+$ npm run build -- --env.only babel
+```
+
 ## Running
 
 You can either run the benchmark suite directly via [Node](https://nodejs.org/),
@@ -71,4 +78,11 @@ $ chakra dist/cli.js
 $ javascriptcore dist/cli.js
 $ spidermonkey dist/cli.js
 $ v8 dist/cli.js
+```
+
+To run an individual benchmark rather than the entire suite via Node, pass the
+`--only` CLI flag:
+
+```
+$ node dist/cli.js --only babel
 ```
