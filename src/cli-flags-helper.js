@@ -18,14 +18,15 @@ const targetList = new Set([
 ]);
 
 function getOnlyFlag(argv) {
-  if (process.argv.indexOf("--only") != -1) {
-    return process.argv[process.argv.indexOf("--only") + 1];
+  const onlyIndex = process.argv.indexOf("--only");
+  if (onlyIndex != -1) {
+    return process.argv[onlyIndex + 1];
   }
 }
 
 module.exports = {
-  getTarget: function() {
-    let onlyArg = getOnlyFlag();
+  getTarget: () => {
+    const onlyArg = getOnlyFlag();
     if (targetList.has(onlyArg)) {
       return [onlyArg];
     } else if (typeof ONLY != "undefined" && targetList.has(ONLY)) {
