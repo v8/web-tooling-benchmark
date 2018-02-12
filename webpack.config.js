@@ -6,8 +6,13 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
+const targetList = require("./src/cli-flags-helper").targetList;
 
-module.exports = [
+function getTarget(env) {
+  return env && targetList.has(env.only) && env.only;
+}
+
+module.exports = env => [
   {
     context: path.resolve("src"),
     entry: "./cli.js",
@@ -31,6 +36,9 @@ module.exports = [
           "  console = {log: print};\n" +
           "}",
         raw: true
+      }),
+      new webpack.DefinePlugin({
+        ONLY: JSON.stringify(getTarget(env))
       })
     ]
   },
@@ -61,6 +69,9 @@ module.exports = [
       new HtmlWebpackPlugin({
         template: "./index.html",
         inject: "head"
+      }),
+      new webpack.DefinePlugin({
+        ONLY: JSON.stringify(getTarget(env))
       })
     ]
   }
