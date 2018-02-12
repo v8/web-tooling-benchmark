@@ -31,11 +31,12 @@ the command is done, it produces a bundled version that is suitable to run in
 JS shells (i.e. `d8`, `jsc` or `jsshell`) in `dist/cli.js` and another bundle
 in `dist/browser.js` that is used by the browser version in `dist/index.html`.
 
-To build individual benchmark suite, pass `--env.only` CLI flag like this:
+To build an individual benchmark rather than the entire suite, pass the `--env.only`
+CLI flag:
+
 ```
 $ npm run build -- --env.only babel
 ```
-
 
 ## Running
 
@@ -79,7 +80,9 @@ $ spidermonkey dist/cli.js
 $ v8 dist/cli.js
 ```
 
-To run individual benchmark suite via Node, `--only` CLI flag should be passed like this:
+To run an individual benchmark rather than the entire suite via Node, pass the
+`--only` CLI flag:
+
 ```
 $ node dist/cli.js --only babel
 ```
