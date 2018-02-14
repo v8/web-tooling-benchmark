@@ -32,7 +32,7 @@ module.exports = {
     } else if (typeof ONLY != "undefined" && targetList.has(ONLY)) {
       return [ONLY];
     } else {
-      return [...targetList];
+      return Array.from(targetList);
     }
   },
   targetList: targetList
