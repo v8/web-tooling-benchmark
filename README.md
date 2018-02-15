@@ -16,9 +16,11 @@ for a detailed description of the tests included in this benchmark suite.
 
 The latest browser version of the benchmark is available at <https://v8.github.io/web-tooling-benchmark/>.
 
-## Building
+## Support
 
-> This was tested with Node 6, Node 7 and Node 8.
+To see the supported Node.js versions of the current version of the Web Tooling Benchmark, see [the `node_js` section of our CI configuration](https://github.com/v8/web-tooling-benchmark/blob/master/.travis.yml).
+
+## Building
 
 To build the benchmark suite, run
 
