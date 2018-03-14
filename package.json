@@ -10,7 +10,8 @@
     "build": "webpack",
     "postinstall": "npm run build:uglify-es-bundled && npm run build:uglify-js-bundled && npm run build",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "jest",
+    "benchmark": "node dist/cli.js"
   },
   "lint-staged": {
     "src/**/*.css": [
