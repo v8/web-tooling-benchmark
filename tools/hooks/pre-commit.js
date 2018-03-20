@@ -17,7 +17,7 @@ targetList.forEach(dependency => {
   }
 });
 
-if (invalid.length) {
+if (invalid.length > 0) {
   console.error(
     `ERROR: Benchmark dependencies must have explicit versions.${EOL}`
   );
