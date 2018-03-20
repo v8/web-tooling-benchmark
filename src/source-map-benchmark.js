@@ -20,7 +20,11 @@ module.exports = {
       const smc = new sourceMap.SourceMapConsumer(payload);
       // ...then serialize the parsed source map to a String.
       const smg = sourceMap.SourceMapGenerator.fromSourceMap(smc);
-      return smg.toString();
+
+      // Create a SourceNode from the generated code and a SourceMapConsumer.
+      const fswsm = sourceMap.SourceNode.fromStringWithSourceMap(payload, smc);
+
+      return [smg.toString(), fswsm.toString()];
     });
   }
 };
