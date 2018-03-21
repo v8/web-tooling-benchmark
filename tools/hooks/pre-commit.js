@@ -9,13 +9,14 @@ const { targetList } = require("../../src/cli-flags-helper");
 targetList.delete("babel");
 targetList.add("@babel/standalone");
 
-const invalid = [];
-targetList.forEach(dependency => {
+const invalid = [...targetList].reduce((list, dependency) => {
   const version = dependencies[dependency];
   if (!semver.valid(version)) {
-    invalid.push({ dependency, version });
+    list.push({ dependency, version });
   }
-});
+  return list;
+}, []);
+
 
 if (invalid.length > 0) {
   console.error(
