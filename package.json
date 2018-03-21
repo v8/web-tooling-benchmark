@@ -9,7 +9,7 @@
     "build:uglify-js-bundled": "node node_modules/uglify-js/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > build/uglify-js-bundled.js",
     "build": "webpack",
     "postinstall": "npm run build:uglify-es-bundled && npm run build:uglify-js-bundled && npm run build",
-    "precommit": "lint-staged",
+    "precommit": "node tools/hooks/pre-commit && lint-staged",
     "test": "jest",
     "benchmark": "node dist/cli.js"
   },
@@ -64,6 +64,7 @@
     "node-libs-browser": "^2.1.0",
     "os-browserify": "^0.3.0",
     "raw-loader": "github:bmeurer/raw-loader#escape",
+    "semver": "^5.5.0",
     "webpack": "^3.8.1"
   }
 }
