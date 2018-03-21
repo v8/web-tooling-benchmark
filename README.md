@@ -86,5 +86,5 @@ To run an individual benchmark rather than the entire suite via Node, pass the
 `--only` CLI flag:
 
 ```
-$ node dist/cli.js --only babel
+$ npm run build -- --env.only babel && npm run benchmark
 ```
