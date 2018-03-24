@@ -8,8 +8,20 @@ const virtualfs = require("virtualfs");
 const fs = new virtualfs.VirtualFS();
 fs.mkdirpSync("third_party/todomvc/react");
 fs.writeFileSync(
+  "third_party/angular-material-1.1.8.css",
+  require("raw-loader!../third_party/angular-material-1.1.8.css")
+);
+fs.writeFileSync(
   "third_party/backbone-1.1.0.js",
   require("raw-loader!../third_party/backbone-1.1.0.js")
+);
+fs.writeFileSync(
+  "third_party/bootstrap-4.0.0.css",
+  require("raw-loader!../third_party/bootstrap-4.0.0.css")
+);
+fs.writeFileSync(
+  "third_party/foundation-6.4.2.css",
+  require("raw-loader!../third_party/foundation-6.4.2.css")
 );
 fs.writeFileSync(
   "third_party/jquery-3.2.1.js",

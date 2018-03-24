@@ -9,6 +9,7 @@ const targetList = new Set([
   "esprima",
   "jshint",
   "lebab",
+  "postcss",
   "prepack",
   "prettier",
   "source-map",
