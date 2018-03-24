@@ -9,6 +9,10 @@ const { targetList } = require("../../src/cli-flags-helper");
 targetList.delete("babel");
 targetList.add("@babel/standalone");
 
+// postcss requires autoprefixer and postcss-nested
+targetList.add("autoprefixer");
+targetList.add("postcss-nested");
+
 const invalid = [...targetList].reduce((list, dependency) => {
   const version = dependencies[dependency];
   if (!semver.valid(version)) {
