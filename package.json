@@ -1,17 +1,18 @@
 {
   "name": "web-tooling-benchmark",
-  "description": "JavaScript Benchmark for common Web Developer workloads",
+  "description": "JavaScript benchmark for common web developer workloads",
   "version": "0.4.0",
   "repository": "https://github.com/v8/web-tooling-benchmark",
   "main": "src/cli.js",
   "scripts": {
+    "benchmark": "node dist/cli.js",
     "build:uglify-es-bundled": "node node_modules/uglify-es/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > build/uglify-es-bundled.js",
     "build:uglify-js-bundled": "node node_modules/uglify-js/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > build/uglify-js-bundled.js",
     "build": "webpack",
     "postinstall": "npm run build:uglify-es-bundled && npm run build:uglify-js-bundled && npm run build",
-    "precommit": "node tools/hooks/pre-commit && lint-staged",
+    "precommit": "node tools/hooks/pre-commit.js && lint-staged",
     "test": "jest",
-    "benchmark": "node dist/cli.js"
+    "update-lock": "npm install --package-lock"
   },
   "lint-staged": {
     "src/**/*.css": [
