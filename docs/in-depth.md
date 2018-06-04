@@ -40,7 +40,7 @@ separately by the `babylon` benchmark below.
 
 ## babel-minify
 
-[Babel Minify](https://github.com/babel/minify) is an ES6+ aware minifier based on the Babel toolchain. It is written as a set of Babel plugins.
+[Babel Minify](https://github.com/babel/minify) is an ES2015+ aware minifier based on the Babel toolchain. It is written as a set of Babel plugins.
 
 This benchmark stresses the babel minifier on the (concatenated) JavaScript source for the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer) 2.0 benchmark.
 
