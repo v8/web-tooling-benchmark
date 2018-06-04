@@ -61,7 +61,7 @@
     "typescript": "2.7.2",
     "uglify-es": "3.3.9",
     "uglify-js": "3.3.16",
-    "virtualfs": "^1.0.0"
+    "virtualfs": "^2.1.0"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.2.0",
