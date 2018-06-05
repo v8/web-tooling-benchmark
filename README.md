@@ -47,28 +47,28 @@ i.e. like this:
 
 ```
 $ node dist/cli.js
-Running Web Tooling Benchmark 0.3.2...
---------------------------------------
-         acorn:  6.06 runs/sec
-         babel:  6.23 runs/sec
-  babel-minify:  4.88 runs/sec
-       babylon:  6.73 runs/sec
-         buble:  5.19 runs/sec
-          chai:  9.60 runs/sec
-  coffeescript:  4.68 runs/sec
-        espree:  2.65 runs/sec
-       esprima:  5.92 runs/sec
-        jshint:  6.12 runs/sec
-         lebab:  6.72 runs/sec
-       postcss:  5.01 runs/sec
-       prepack:  4.54 runs/sec
-      prettier:  3.54 runs/sec
-    source-map:  6.58 runs/sec
-    typescript:  7.83 runs/sec
-     uglify-es: 13.54 runs/sec
-     uglify-js:  3.70 runs/sec
---------------------------------------
-Geometric mean:  5.74 runs/sec
+Running Web Tooling Benchmark v0.5.0…
+-------------------------------------
+         acorn:  6.94 runs/s
+         babel:  7.45 runs/s
+  babel-minify:  6.66 runs/s
+       babylon:  6.26 runs/s
+         buble:  4.07 runs/s
+          chai: 14.33 runs/s
+  coffeescript:  5.95 runs/s
+        espree:  2.09 runs/s
+       esprima:  4.13 runs/s
+        jshint:  8.84 runs/s
+         lebab:  7.07 runs/s
+       postcss:  5.35 runs/s
+       prepack:  5.58 runs/s
+      prettier:  6.19 runs/s
+    source-map:  7.63 runs/s
+    typescript:  8.59 runs/s
+     uglify-es: 13.69 runs/s
+     uglify-js:  4.59 runs/s
+-------------------------------------
+Geometric mean:  6.38 runs/s
 ```
 
 Or you open a web browser and point it to `dist/index.html`, or you can use one
