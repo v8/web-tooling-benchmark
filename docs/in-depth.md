@@ -38,6 +38,12 @@ Note that this explicitly excludes the [Babylon](https://github.com/babel/babylo
 and only measures the throughput of the actual transformations. The parser is tested
 separately by the `babylon` benchmark below.
 
+## babel-minify
+
+[Babel Minify](https://github.com/babel/minify) is an ES2015+ aware minifier based on the Babel toolchain. It is written as a set of Babel plugins.
+
+This benchmark stresses the babel minifier on the (concatenated) JavaScript source for the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer) 2.0 benchmark.
+
 ## babylon
 
 [Babylon](https://github.com/babel/babylon) is the frontend for the Babel transpiler and
@@ -198,9 +204,8 @@ compressor and beautifier toolkit, which is commonly used to minimize JavaScript
 bundles.
 
 This benchmark runs the UglifyJS minifier on the (concatenated) JavaScript source for
-the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer) 2.0 benchmark.
+the ES2015 test in the [Lodash](https://lodash.com) module.
 
 ## uglify-es
 
-This benchmark stresses the new ES2015 and beyond minifier using the 196KiB
-ES2015 module containing the untranspiled [Vue](https://github.com/vuejs/vue) bundle.
+This benchmark stresses the new ES2015 and beyond minifier on the (concatenated) JavaScript source for the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer) 2.0 benchmark.

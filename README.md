@@ -51,6 +51,7 @@ Running Web Tooling Benchmark 0.3.2...
 --------------------------------------
          acorn:  6.06 runs/sec
          babel:  6.23 runs/sec
+  babel-minify:  4.88 runs/sec
        babylon:  6.73 runs/sec
          buble:  5.19 runs/sec
           chai:  9.60 runs/sec
