@@ -47,7 +47,7 @@ i.e. like this:
 
 ```
 $ node dist/cli.js
-Running Web Tooling Benchmark v0.5.0…
+Running Web Tooling Benchmark v0.5.1…
 -------------------------------------
          acorn:  6.94 runs/s
          babel:  7.45 runs/s
