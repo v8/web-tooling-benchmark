@@ -18,7 +18,7 @@ The latest browser version of the benchmark is available at <https://v8.github.i
 
 ## Support
 
-To see the supported Node.js versions of the current version of the Web Tooling Benchmark, see [the `node_js` section of our CI configuration](https://github.com/v8/web-tooling-benchmark/blob/master/.travis.yml).
+The Web Tooling Benchmark supports the latest [active LTS](https://github.com/nodejs/Release#release-schedule) version of Node.js. To see the supported Node.js versions of the current version of the benchmark, see [the `node_js` section of our CI configuration](https://github.com/v8/web-tooling-benchmark/blob/master/.travis.yml).
 
 ## Building
 
