@@ -191,7 +191,7 @@ variety of different source maps, including the [Preact](http://preactjs.com)
 
 [terser](https://github.com/fabiosantoscode/terser) is a fork of `uglify-es` that retains API and CLI compatibility with `uglify-es` and `uglify-js@3`.
 
-This benchmark stresses the new ES2015 and beyond minifier on the (concatenated) JavaScript source for the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer) 2.0 benchmark.
+This benchmark stresses the new ES2015-and-beyond minifier on the (concatenated) JavaScript source for the ES2015 test in the [Speedometer](https://browserbench.org/Speedometer) 2.0 benchmark.
 
 ## typescript
 
