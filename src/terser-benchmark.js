@@ -1,8 +1,8 @@
-// Copyright 2017 the V8 project authors. All rights reserved.
+// Copyright 2018 the V8 project authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-const UglifyJS = require("../build/uglify-es-bundled");
+const Terser = require("../build/terser-bundled");
 const fs = require("fs");
 
 const payloads = [
@@ -16,10 +16,10 @@ const payloads = [
 }));
 
 module.exports = {
-  name: "uglify-es",
+  name: "terser",
   fn() {
     return payloads.map(({ payload, options }) =>
-      UglifyJS.minify(payload, options)
+      Terser.minify(payload, options)
     );
   }
 };
