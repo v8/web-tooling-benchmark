@@ -14,8 +14,8 @@ const targetList = new Set([
   "prepack",
   "prettier",
   "source-map",
+  "terser",
   "typescript",
-  "uglify-es",
   "uglify-js"
 ]);
 

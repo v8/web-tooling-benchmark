@@ -6,10 +6,10 @@
   "main": "src/cli.js",
   "scripts": {
     "benchmark": "node dist/cli.js",
-    "build:uglify-es-bundled": "node node_modules/uglify-es/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > build/uglify-es-bundled.js",
+    "build:terser-bundled": "node node_modules/terser/bin/uglifyjs -b preamble=\"'const Terser = module.exports = {};'\" --self > build/terser-bundled.js",
     "build:uglify-js-bundled": "node node_modules/uglify-js/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > build/uglify-js-bundled.js",
     "build": "webpack",
-    "postinstall": "npm run build:uglify-es-bundled && npm run build:uglify-js-bundled && npm run build",
+    "postinstall": "npm run build:terser-bundled && npm run build:uglify-js-bundled && npm run build",
     "precommit": "node tools/hooks/pre-commit.js && lint-staged",
     "test": "jest",
     "update-lock": "npm install --package-lock"
@@ -59,8 +59,8 @@
     "prettier": "1.9.2",
     "source-map": "0.6.1",
     "string-align": "^0.2.0",
+    "terser": "3.8.2",
     "typescript": "2.7.2",
-    "uglify-es": "3.3.9",
     "uglify-js": "3.3.16",
     "virtualfs": "^2.1.0"
   },
