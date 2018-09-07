@@ -36,6 +36,8 @@ There's no formal test suite yet. For now the process is roughly:
   - [ ] `npm install --save-exact` any necessary dependencies, and be sure to include the `package.json` changes in your pull request.
   - [ ] Put any assets used by the benchmark into the `third_party` folder and hook them up with the virtual file system in `src/vfs.js`.
 
+Many of the steps above can be automated with the `npm run new-benchmark` script. It uses [`wtb-generate`](https://github.com/alopezsanchez/web-tooling-benchmark-generator), which is a CLI tool that automates some repetitive task when creating new benchmarks.
+
 ## Sign the CLA
 
 Before we can use your code you have to sign the [Google Individual Contributor License Agreement](https://cla.developers.google.com/about/google-individual), which you can do online. This is mainly because you own the copyright to your changes, even after your contribution becomes part of our codebase, so we need your permission to use and distribute your code. We also need to be sure of various other things, for instance that you’ll tell us if you know that your code infringes on other people’s patents. You don’t have to do this until after you’ve submitted your code for review and a member has approved it, but you will have to do it before we can put your code into our codebase.
