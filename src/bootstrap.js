@@ -46,8 +46,12 @@ function reset() {
       } else {
         const benchmark = benchmarks[index];
         text += `<td class="benchmark-name">`;
-        text += `<a href="https://github.com/v8/web-tooling-benchmark/blob/master/docs/in-depth.md#${benchmark.name}" target="_blank">${benchmark.name}</a></td>`;
-        text += `<td class="result" id="results-cell-${benchmark.name}">&mdash;</td>`;
+        text += `<a href="https://github.com/v8/web-tooling-benchmark/blob/master/docs/in-depth.md#${
+          benchmark.name
+        }" target="_blank">${benchmark.name}</a></td>`;
+        text += `<td class="result" id="results-cell-${
+          benchmark.name
+        }">&mdash;</td>`;
       }
     }
     text += "</tr>";
@@ -82,6 +86,16 @@ window.onerror = () => {
 };
 window.onload = initialize;
 
+// Helpers for automated runs in Telemetry/Catapult.
+window.automated = {
+  // Set to true when the whole suite is completed.
+  completed: false,
+  // The result array of {name, score} pairs.
+  results: [],
+  // The function that starts the run.
+  start
+};
+
 suite.forEach(benchmark => {
   benchmark.on("start", event => {
     if (suite.aborted) return;
@@ -114,8 +128,13 @@ suite.forEach(benchmark => {
 });
 
 suite.on("complete", event => {
+  window.automated.completed = true;
   if (suite.aborted) return;
   const hz = gmean(suite.map(benchmark => benchmark.hz));
+  window.automated.results = suite.map(benchmark => {
+    return { name: benchmark.name, score: benchmark.hz };
+  });
+  window.automated.results.push({ name: "total", score: hz });
   displayResultMessage("geomean", `${hz.toFixed(2)}`, "highlighted-result");
 
   const statusDiv = document.getElementById("status");
@@ -129,10 +148,13 @@ suite.on("complete", event => {
 });
 
 suite.on("error", event => {
+  window.automated.completed = true;
   const benchmark = event.target;
   const error = benchmark.error;
   const name = benchmark.name;
-  document.body.innerHTML = `<h1>ERROR</h1><p>Encountered errors during execution of ${name} test. Refusing to run a partial benchmark suite.</p><pre>${error.stack}</pre>`;
+  document.body.innerHTML = `<h1>ERROR</h1><p>Encountered errors during execution of ${name} test. Refusing to run a partial benchmark suite.</p><pre>${
+    error.stack
+  }</pre>`;
   console.error(error);
   suite.abort();
 });
