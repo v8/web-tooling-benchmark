@@ -52,7 +52,7 @@
     "compute-gmean": "^1.1.0",
     "espree": "3.5.4",
     "esprima": "4.0.0",
-    "jshint": "2.9.5",
+    "jshint": "2.9.7",
     "lebab": "2.7.7",
     "postcss": "6.0.21",
     "postcss-nested": "3.0.0",
@@ -61,7 +61,7 @@
     "source-map": "0.6.1",
     "string-align": "^0.2.0",
     "terser": "3.8.2",
-    "typescript": "2.7.2",
+    "typescript": "3.3.1",
     "uglify-js": "3.3.16",
     "virtualfs": "^2.1.0"
   },
