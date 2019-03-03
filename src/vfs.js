@@ -28,6 +28,10 @@ fs.writeFileSync(
   require("raw-loader!../third_party/jquery-3.2.1.js")
 );
 fs.writeFileSync(
+  "third_party/jshint.js",
+  require("raw-loader!../third_party/jquery-3.2.1.js")
+);
+fs.writeFileSync(
   "third_party/coffeescript-lexer-2.0.1.coffee",
   require("raw-loader!../third_party/coffeescript-lexer-2.0.1.coffee")
 );
