@@ -92,6 +92,7 @@ This benchmark runs the CoffeeScript compiler on the [`lexer.coffee`](https://gi
 file from the CoffeeScript 2.0.1 distribution.
 
 ## eslint
+
 [ESLint](https://eslint.org/) is an open source project that helps developers find and 
 fix problems with their JavaScript code. This is done by code linting, which 
 identifies problematic patterns or code that does not find certain style guidelines.
@@ -99,10 +100,10 @@ ESLint was created to allow developers to use their own set of linting rules, an
 is designed to have all rules completely pluggable.
 
 This benchmark runs ESLint on
-- the [JSHint](https://jshint.com/) 2.1.8 distribution,
-- the [lodash](https://lodash.com) 4.17.4 bundle,
-- the [Preact](http://preactjs.com) 8.2.5 bundle,
-- and the [underscore](http://underscorejs.org) 1.8.3 distribution.
+- the [JSHint](https://jshint.com/) v2.1.8 distribution,
+- the [lodash](https://lodash.com/) v4.17.4 bundle,
+- the [Preact](http://preactjs.com/) v8.2.5 bundle,
+- and the [underscore](http://underscorejs.org/) v1.8.3 distribution.
 
 ## espree
 
