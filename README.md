@@ -59,6 +59,7 @@ Running Web Tooling Benchmark v0.5.2…
          buble:  4.77 runs/s
           chai: 14.47 runs/s
   coffeescript:  5.62 runs/s
+        eslint:  2.35 runs/s
         espree:  4.05 runs/s
        esprima:  6.68 runs/s
         jshint:  7.84 runs/s
