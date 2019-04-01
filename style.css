@@ -1,0 +1,180 @@
+/*-
+ * Copyright 2017 the V8 project authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file.
+ */
+
+body {
+  font-family: Roboto, Helvetica, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 19px;
+  padding-bottom: 00px;
+}
+
+body main {
+  display: block;
+  width: 850px;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+::selection {
+  background-color: rgb(19, 156, 7);
+  color: white;
+}
+
+p.summary {
+  margin: 18px auto 5px;
+  background-image: -webkit-linear-gradient(
+    right,
+    white 70%,
+    rgba(255, 255, 255, 0)
+  );
+  background-image: -moz-linear-gradient(
+    right,
+    white 70%,
+    rgba(255, 255, 255, 0)
+  );
+  background-image: linear-gradient(
+    to right,
+    white 70%,
+    rgba(255, 255, 255, 0)
+  );
+  padding: 15px 125px 0;
+  text-align: center;
+}
+
+h1 {
+  color: rgb(19, 156, 7);
+  text-align: left;
+  margin-top: 40px;
+}
+
+p {
+  text-align: left;
+  text-indent: 20px;
+}
+
+p:first-of-type {
+  text-indent: 0;
+}
+
+div#status {
+  margin-top: 20px;
+  height: 20px;
+}
+
+div#status a:link {
+  font-weight: bold;
+}
+
+div#result-summary:empty {
+  display: none;
+}
+
+div#result-summary {
+  margin-top: 20px;
+}
+
+div#result-summary label {
+  font-weight: bold;
+}
+
+div#result-summary .score {
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 48px;
+  color: rgb(19, 156, 7);
+}
+
+div#result-summary .score {
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: normal;
+}
+
+div#version {
+  margin-top: 60px;
+  font-size: 12px;
+  font-style: italic;
+  color: darkgrey;
+}
+
+a:link,
+a:visited {
+  color: rgb(19, 156, 7);
+  text-decoration: none;
+}
+
+a:link:hover {
+  text-decoration: underline;
+}
+
+table#results {
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin-top: 15px;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td,
+th {
+  padding: 4px 8px;
+}
+
+th {
+  font-size: 14px;
+}
+
+tr:first-child > th:nth-child(odd):not(:first-child) {
+  border-left: 15px solid white;
+}
+
+tr:first-child > th:nth-child(odd) {
+  text-align: left;
+}
+
+tr:first-child > th:nth-child(even) {
+  width: px;
+}
+
+tr:nth-child(even):not(:first-child) {
+  background-color: rgb(238, 247, 238);
+}
+
+.result {
+  color: rgb(19, 156, 7);
+  white-space: nowrap;
+}
+
+.highlighted-result {
+  background-color: rgb(19, 156, 7);
+  color: white;
+}
+
+.benchmark-name {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.geometric-mean,
+.benchmark-name.category,
+.result.category {
+  font-weight: bold;
+}
+
+.benchmark-name:not(.category):not(.geometric-mean) {
+  text-indent: 0.5em;
+}
+
+.benchmark-name:not(:first-child) {
+  border-left: 15px solid white;
+}
+
+.benchmark-name a:link,
+.benchmark-name a:visited {
+  color: black;
+}
