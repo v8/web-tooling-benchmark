@@ -10,10 +10,10 @@
     "build:uglify-js-bundled": "node node_modules/uglify-js/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > build/uglify-js-bundled.js",
     "build": "webpack",
     "postinstall": "npm run build:terser-bundled && npm run build:uglify-js-bundled && npm run build",
-    "precommit": "node tools/hooks/pre-commit.js && lint-staged",
     "test": "jest",
     "update-lock": "npm install --package-lock",
-    "new-benchmark": "wtb-generate"
+    "new-benchmark": "wtb-generate",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*.css": [
@@ -69,9 +69,9 @@
   "devDependencies": {
     "copy-webpack-plugin": "^4.2.0",
     "html-webpack-plugin": "^2.30.1",
-    "husky": "^0.14.3",
+    "husky": "^8.0.0",
     "jest": "^21.2.1",
-    "lint-staged": "^4.3.0",
+    "lint-staged": "^13.2.3",
     "node-libs-browser": "^2.1.0",
     "os-browserify": "^0.3.0",
     "raw-loader": "github:bmeurer/raw-loader#escape",
