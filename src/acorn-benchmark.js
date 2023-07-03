@@ -4,7 +4,7 @@
 
 const acorn = require("acorn");
 const fs = require("fs");
-const walk = require("acorn/dist/walk");
+const walk = require("acorn-walk");
 
 const payloads = [
   {
