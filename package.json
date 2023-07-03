@@ -77,6 +77,6 @@
     "raw-loader": "github:bmeurer/raw-loader#escape",
     "semver": "^7.5.3",
     "web-tooling-benchmark-generator": "^1.0.2",
-    "webpack": "^3.8.1"
+    "webpack": "^3.12.0"
   }
 }
