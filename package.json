@@ -72,7 +72,7 @@
     "husky": "^8.0.0",
     "jest": "^21.2.1",
     "lint-staged": "^13.2.3",
-    "node-libs-browser": "^2.1.0",
+    "node-libs-browser": "^2.2.1",
     "os-browserify": "^0.3.0",
     "raw-loader": "github:bmeurer/raw-loader#escape",
     "semver": "^5.5.0",
