@@ -9,6 +9,10 @@ const { targetList } = require("../../src/cli-flags-helper");
 targetList.delete("babel");
 targetList.add("@babel/standalone");
 
+// babylon -> @babel/parser
+targetList.delete("babylon");
+targetList.add("@babel/parser");
+
 // acorn requires acorn-walk
 targetList.add("acorn-walk");
 

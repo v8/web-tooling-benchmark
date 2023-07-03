@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-const babylon = require("babylon");
+const babylon = require("@babel/parser");
 const fs = require("fs");
 
 const payloads = [

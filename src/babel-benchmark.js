@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 const Babel = require("@babel/standalone");
-const babylon = require("babylon");
+const babylon = require("@babel/parser");
 const fs = require("fs");
 
 const payloads = [
