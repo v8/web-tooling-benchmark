@@ -9,6 +9,9 @@ const { targetList } = require("../../src/cli-flags-helper");
 targetList.delete("babel");
 targetList.add("@babel/standalone");
 
+// acorn requires acorn-walk
+targetList.add("acorn-walk");
+
 // postcss requires autoprefixer and postcss-nested
 targetList.add("autoprefixer");
 targetList.add("postcss-nested");
