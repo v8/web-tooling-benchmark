@@ -75,7 +75,7 @@
     "node-libs-browser": "^2.2.1",
     "os-browserify": "^0.3.0",
     "raw-loader": "github:bmeurer/raw-loader#escape",
-    "semver": "^5.5.0",
+    "semver": "^7.5.3",
     "web-tooling-benchmark-generator": "^1.0.2",
     "webpack": "^3.8.1"
   }
