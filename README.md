@@ -1,6 +1,6 @@
 # Web Tooling Benchmark
 
-[![Build Status](https://travis-ci.org/v8/web-tooling-benchmark.svg?branch=master)](https://travis-ci.org/v8/web-tooling-benchmark) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Build Status](https://github.com/manbearwiz/web-tooling-benchmark/actions/workflows/static.yml/badge.svg)](https://github.com/manbearwiz/web-tooling-benchmark/actions/workflows/static.yml) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 This is a benchmark suite designed to measure the JavaScript-related
 workloads commonly used by web developers, such as the
