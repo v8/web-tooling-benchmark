@@ -8,7 +8,7 @@
     "benchmark": "node dist/cli.js",
     "build:terser-bundled": "node node_modules/terser/bin/uglifyjs -b preamble=\"'const Terser = module.exports = {};'\" --self > build/terser-bundled.js",
     "build:uglify-js-bundled": "node node_modules/uglify-js/bin/uglifyjs -b preamble=\"'const UglifyJS = module.exports = {};'\" --self > build/uglify-js-bundled.js",
-    "build": "webpack",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider webpack",
     "postinstall": "npm run build:terser-bundled && npm run build:uglify-js-bundled && npm run build",
     "test": "jest",
     "update-lock": "npm install --package-lock",
@@ -66,9 +66,9 @@
     "uglify-js": "3.3.16",
     "virtualfs": "^2.1.0"
   },
-  "devDependencies": {
-    "copy-webpack-plugin": "^4.2.0",
-    "html-webpack-plugin": "^2.30.1",
+  "devDependencies": {    
+    "copy-webpack-plugin": "^6.4.1",
+    "html-webpack-plugin": "^4.5.2",
     "husky": "^8.0.0",
     "jest": "^23.6.0",
     "lint-staged": "^13.2.3",
@@ -77,6 +77,7 @@
     "raw-loader": "github:bmeurer/raw-loader#escape",
     "semver": "^7.5.3",
     "web-tooling-benchmark-generator": "^1.0.2",
-    "webpack": "^3.12.0"
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.10.0"
   }
 }
