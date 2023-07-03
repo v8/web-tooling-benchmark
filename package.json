@@ -55,7 +55,7 @@
     "esprima": "4.0.0",
     "jshint": "2.9.7",
     "lebab": "2.7.7",
-    "postcss": "6.0.21",
+    "postcss": "7.0.36",
     "postcss-nested": "3.0.0",
     "prepack": "0.2.25",
     "prettier": "1.9.2",
