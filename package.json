@@ -62,7 +62,7 @@
     "string-align": "^0.2.0",
     "terser": "4.8.1",
     "typescript": "3.3.1",
-    "uglify-js": "3.3.16",
+    "uglify-js": "3.17.4",
     "virtualfs": "^2.1.0"
   },
   "devDependencies": {
