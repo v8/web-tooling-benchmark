@@ -48,12 +48,12 @@
     "benchmark": "^2.1.4",
     "buble": "0.20.0",
     "chai": "4.1.2",
-    "coffeescript": "2.2.3",
+    "coffeescript": "2.7.0",
     "compute-gmean": "^1.1.0",
-    "espree": "3.5.4",
-    "esprima": "4.0.0",
+    "espree": "4.1.0",
+    "esprima": "4.0.1",
     "jshint": "2.13.6",
-    "lebab": "2.7.7",  
+    "lebab": "3.2.1",
     "postcss": "7.0.39",
     "postcss-nested": "4.2.3",
     "prepack": "0.2.25",
@@ -61,9 +61,9 @@
     "source-map": "0.6.1",
     "string-align": "^0.2.0",
     "terser": "4.8.1",
-    "typescript": "3.3.1",
+    "typescript": "4.9.5",
     "uglify-js": "3.17.4",
-    "virtualfs": "^2.1.0"
+    "virtualfs": "^2.2.0"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.2.0",
