@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-const Terser = require("../build/terser-bundled");
+const { minify } = require("terser");
 const fs = require("fs");
 
 const payloads = [
@@ -18,8 +18,6 @@ const payloads = [
 module.exports = {
   name: "terser",
   fn() {
-    return payloads.map(({ payload, options }) =>
-      Terser.minify(payload, options)
-    );
+    return payloads.map(({ payload, options }) => minify(payload, options));
   }
 };
