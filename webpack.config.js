@@ -58,9 +58,7 @@ module.exports = env => [
       }
     },
     plugins: [
-      new CopyWebpackPlugin({
-        patterns: [{ from: "style.css" }, { from: "Logo.png" }]
-      }),
+      new CopyWebpackPlugin([{ from: "style.css" }, { from: "Logo.png" }]),
       new webpack.BannerPlugin({
         banner:
           "// Work-around for the weird JaegerMonkey\n" +
