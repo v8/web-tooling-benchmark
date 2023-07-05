@@ -50,7 +50,7 @@
     "chai": "4.1.2",
     "coffeescript": "2.7.0",
     "compute-gmean": "^1.1.0",
-    "espree": "4.1.0",
+    "espree": "9.6.0",
     "esprima": "4.0.1",
     "jshint": "2.13.6",
     "lebab": "3.2.1",
