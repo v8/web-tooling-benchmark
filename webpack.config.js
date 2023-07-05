@@ -14,6 +14,7 @@ function getTarget(env) {
 
 module.exports = env => [
   {
+    mode: "development",
     context: path.resolve("src"),
     entry: "./cli.js",
     output: {
@@ -43,6 +44,7 @@ module.exports = env => [
     ]
   },
   {
+    mode: "development",
     context: path.resolve("src"),
     entry: "./bootstrap.js",
     output: {
@@ -58,7 +60,9 @@ module.exports = env => [
       }
     },
     plugins: [
-      new CopyWebpackPlugin([{ from: "style.css" }, { from: "Logo.png" }]),
+      new CopyWebpackPlugin({
+        patterns: [{ from: "style.css" }, { from: "Logo.png" }]
+      }),
       new webpack.BannerPlugin({
         banner:
           "// Work-around for the weird JaegerMonkey\n" +
