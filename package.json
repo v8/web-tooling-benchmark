@@ -54,6 +54,7 @@
     "esprima": "4.0.1",
     "jshint": "2.13.6",
     "lebab": "3.2.1",
+    "memfs": "^4.2.0",
     "postcss": "7.0.39",
     "postcss-nested": "4.2.3",
     "prepack": "0.2.25",
@@ -62,8 +63,7 @@
     "string-align": "^0.2.0",
     "terser": "4.8.1",
     "typescript": "4.9.5",
-    "uglify-js": "3.17.4",
-    "virtualfs": "^2.2.0"
+    "uglify-js": "3.17.4"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.2.0",
