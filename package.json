@@ -61,7 +61,7 @@
     "prettier": "1.9.2",
     "source-map": "0.6.1",
     "string-align": "^0.2.0",
-    "terser": "4.8.1",
+    "terser": "5.18.2",
     "typescript": "4.9.5",
     "uglify-js": "3.17.4"
   },
