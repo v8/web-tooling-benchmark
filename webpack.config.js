@@ -15,6 +15,15 @@ function getTarget(env) {
 module.exports = env => [
   {
     mode: "development",
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: "javascript/auto"
+        }
+      ]
+    },
     context: path.resolve("src"),
     entry: "./cli.js",
     output: {
@@ -45,6 +54,15 @@ module.exports = env => [
   },
   {
     mode: "development",
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: "javascript/auto"
+        }
+      ]
+    },
     context: path.resolve("src"),
     entry: "./bootstrap.js",
     output: {
